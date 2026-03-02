@@ -85,6 +85,15 @@
             gap: 5px;
         }
         
+        .language-btn {
+            width: auto;
+            padding: 0 15px;
+            border-radius: 30px;
+            font-size: 14px;
+            gap: 5px;
+            background: rgba(255, 255, 255, 0.3);
+        }
+        
         .font-size-control {
             display: flex;
             align-items: center;
@@ -155,7 +164,6 @@
             to { transform: translateY(0); opacity: 1; }
         }
         
-        /* ===== ИСПРАВЛЕНО НАЗВАНИЕ ===== */
         .tg-top-banner {
             background: linear-gradient(135deg, #0088cc, #005f8c);
             color: white;
@@ -174,7 +182,6 @@
             gap: 10px;
             flex-wrap: wrap;
         }
-        /* ================================ */
         
         .header {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -464,6 +471,7 @@
     <div class="control-panel">
         <button class="control-btn" onclick="toggleTheme()" id="themeBtn">🌙</button>
         <button class="control-btn device-btn" onclick="toggleDevice()" id="deviceBtn">💻 Компьютер</button>
+        <button class="control-btn language-btn" onclick="toggleLanguage()" id="langBtn">🇷🇺 Русский</button>
         <div class="font-size-control">
             <button class="font-size-btn" onclick="changeFontSize(-2)">−</button>
             <input type="range" min="12" max="32" value="18" class="font-size-slider" id="fontSizeSlider" oninput="updateFontSize(this.value)">
@@ -473,68 +481,62 @@
     </div>
     
     <div class="container">
-        <!-- ===== ИСПРАВЛЕНО ЗДЕСЬ ===== -->
         <div class="tg-top-banner">
             <a href="https://t.me/PROJECTARDUINOUNO" target="_blank">
-                <span>📱</span> ПОДПИШИСЬ: АРДУИНО ПРОЕКТЫ И ПАЯЛЬНИКИ <span>🔧</span>
+                <span>📱</span> <span id="subscribeText">ПОДПИШИСЬ: АРДУИНО ПРОЕКТЫ И ПАЯЛЬНИКИ</span> <span>🔧</span>
             </a>
         </div>
-        <!-- ============================= -->
         
-        <!-- ===== ИСПРАВЛЕНО ЗДЕСЬ ===== -->
         <div class="header">
-            <h1>🔧 АРДУИНО ПРОЕКТЫ И ПАЯЛЬНИКИ 🔧</h1>
-            <p>Метеостанция, RGB светодиод и другие проекты</p>
-            <span class="badge">2026</span>
+            <h1 id="mainTitle">🔧 АРДУИНО ПРОЕКТЫ И ПАЯЛЬНИКИ 🔧</h1>
+            <p id="mainDesc">Метеостанция, RGB светодиод и другие проекты</p>
+            <span class="badge" id="badge">2026</span>
         </div>
-        <!-- ============================= -->
         
         <div class="content">
             <div class="tabs">
-                <button class="tab-btn active" onclick="openTab(event, 'tab1')">📋 1. Метеостанция</button>
-                <button class="tab-btn" onclick="openTab(event, 'tab2')">💡 2. RGB светодиод</button>
-                <button class="tab-btn" onclick="openTab(event, 'tab3')">🔧 3. Arduino Uno/Nano</button>
-                <button class="tab-btn" onclick="openTab(event, 'tab4')">⚡ 4. СКОРО</button>
+                <button class="tab-btn active" onclick="openTab(event, 'tab1')"><span id="tab1Text">📋 1. Метеостанция</span></button>
+                <button class="tab-btn" onclick="openTab(event, 'tab2')"><span id="tab2Text">💡 2. RGB светодиод</span></button>
+                <button class="tab-btn" onclick="openTab(event, 'tab3')"><span id="tab3Text">🔧 3. Arduino Uno/Nano</span></button>
+                <button class="tab-btn" onclick="openTab(event, 'tab4')"><span id="tab4Text">⚡ 4. СКОРО</span></button>
             </div>
             
             <!-- Вкладка 1 - Метеостанция -->
             <div id="tab1" class="tab-content active">
-                <div class="greeting">
+                <div class="greeting" id="greeting1">
                     👋 ВСЕМ ПРИВЕТ!
                 </div>
                 
-                <div class="story">
+                <div class="story" id="story1">
                     <p>🔥 Как и обещал, расскажу про проект метеостанция. Взял ESP8266, потом DHT22. Решил сначала сделать сайт - сделал, мне не понравилось. Потом создал бота в Telegram, делал его 2 дня.</p>
                     
                     <p>🤖 Бот показывает температуру и влажность. Сделал его приватным. Прошил ESP, подключил к повербанку, взял коробку, вырезал отверстия, просунул датчик - и понеслась!</p>
                     
                     <div style="text-align: center;">
-                        <span class="highlight">✨ СТАЛ ДОБАВЛЯТЬ В БОТА ПРИКОЛЫ ✨</span>
+                        <span class="highlight" id="highlight1">✨ СТАЛ ДОБАВЛЯТЬ В БОТА ПРИКОЛЫ ✨</span>
                     </div>
                     
-                    <p>📱 Создавал его через @BotFather, написал код в Arduino IDE. Код будет ниже. Настолько понравился проект, что решил заказать печать у @Bolodechka. Пока что думаю...</p>
+                    <p id="story2">📱 Создавал его через @BotFather, написал код в Arduino IDE. Код будет ниже. Настолько понравился проект, что решил заказать печать у @Bolodechka. Пока что думаю...</p>
                     
-                    <!-- ===== ИСПРАВЛЕНО ЗДЕСЬ ===== -->
-                    <p style="text-align: right; font-style: italic; margin-top: 30px;">АРДУИНО ПРОЕКТЫ И ПАЯЛЬНИКИ, 25.02.2026 21:34</p>
-                    <!-- ============================= -->
+                    <p style="text-align: right; font-style: italic; margin-top: 30px;" id="signature">АРДУИНО ПРОЕКТЫ И ПАЯЛЬНИКИ, 25.02.2026 21:34</p>
                 </div>
                 
                 <div class="connection-scheme">
-                    <h2>🔌 СХЕМА ПОДКЛЮЧЕНИЯ DHT22</h2>
+                    <h2 id="schemeTitle1">🔌 СХЕМА ПОДКЛЮЧЕНИЯ DHT22</h2>
                     <div class="scheme-grid">
-                        <div class="scheme-item"><span>🔴</span><strong class="pin-red">VCC → 3.3V</strong></div>
-                        <div class="scheme-item"><span>⚫</span><strong class="pin-gnd">GND → GND</strong></div>
-                        <div class="scheme-item"><span>🔵</span><strong>DATA → D2 (GPIO4)</strong></div>
-                        <div class="scheme-item"><span>⚡</span><strong>Резистор 10кОм</strong></div>
+                        <div class="scheme-item"><span>🔴</span><strong class="pin-red"><span id="pin1">VCC → 3.3V</span></strong></div>
+                        <div class="scheme-item"><span>⚫</span><strong class="pin-gnd"><span id="pin2">GND → GND</span></strong></div>
+                        <div class="scheme-item"><span>🔵</span><strong><span id="pin3">DATA → D2 (GPIO4)</span></strong></div>
+                        <div class="scheme-item"><span>⚡</span><strong><span id="pin4">Резистор 10кОм</span></strong></div>
                     </div>
                 </div>
                 
-                <h2 style="color: #667eea; margin: 30px 0 20px; text-align: center;">⚡ КОМПОНЕНТЫ МЕТЕОСТАНЦИИ ⚡</h2>
+                <h2 style="color: #667eea; margin: 30px 0 20px; text-align: center;" id="componentsTitle">⚡ КОМПОНЕНТЫ МЕТЕОСТАНЦИИ ⚡</h2>
                 
                 <div class="components-grid">
                     <div class="component-card">
                         <div class="component-icon">🔹</div>
-                        <h3>ESP8266</h3>
+                        <h3 id="comp1">ESP8266</h3>
                         <div class="shop-buttons">
                             <a href="https://www.wildberries.ru/catalog/0/search.aspx?search=esp8266" target="_blank" class="shop-btn wb">Wildberries</a>
                             <a href="https://www.ozon.ru/search/?text=esp8266" target="_blank" class="shop-btn ozon">Ozon</a>
@@ -544,7 +546,7 @@
                     
                     <div class="component-card">
                         <div class="component-icon">🌡️</div>
-                        <h3>Датчик DHT22</h3>
+                        <h3 id="comp2">Датчик DHT22</h3>
                         <div class="shop-buttons">
                             <a href="https://www.wildberries.ru/catalog/0/search.aspx?search=dht22" target="_blank" class="shop-btn wb">Wildberries</a>
                             <a href="https://www.ozon.ru/search/?text=dht22" target="_blank" class="shop-btn ozon">Ozon</a>
@@ -554,7 +556,7 @@
                     
                     <div class="component-card">
                         <div class="component-icon">⚡</div>
-                        <h3>Резисторы 10кОм</h3>
+                        <h3 id="comp3">Резисторы 10кОм</h3>
                         <div class="shop-buttons">
                             <a href="https://www.wildberries.ru/catalog/0/search.aspx?search=резисторы+10кОм" target="_blank" class="shop-btn wb">Wildberries</a>
                             <a href="https://www.ozon.ru/search/?text=резисторы+10кОм" target="_blank" class="shop-btn ozon">Ozon</a>
@@ -564,7 +566,7 @@
                     
                     <div class="component-card">
                         <div class="component-icon">🔋</div>
-                        <h3>Повербанк</h3>
+                        <h3 id="comp4">Повербанк</h3>
                         <div class="shop-buttons">
                             <a href="https://www.wildberries.ru/catalog/0/search.aspx?search=повербанк" target="_blank" class="shop-btn wb">Wildberries</a>
                             <a href="https://www.ozon.ru/search/?text=повербанк" target="_blank" class="shop-btn ozon">Ozon</a>
@@ -574,7 +576,7 @@
                 </div>
                 
                 <div class="code-section">
-                    <h2>📟 ПОЛНЫЙ КОД МЕТЕОСТАНЦИИ</h2>
+                    <h2 id="codeTitle1">📟 ПОЛНЫЙ КОД МЕТЕОСТАНЦИИ</h2>
                     <div class="code-block">
                         <pre>
 #include &lt;ESP8266WiFi.h&gt;
@@ -776,20 +778,20 @@ void loop() {
             
             <!-- Вкладка 2 - RGB светодиод -->
             <div id="tab2" class="tab-content">
-                <div class="greeting">🌈 RGB светодиод + ESP8266</div>
+                <div class="greeting" id="greeting2">🌈 RGB светодиод + ESP8266</div>
                 
                 <div class="connection-scheme">
-                    <h2>🔌 СХЕМА ПОДКЛЮЧЕНИЯ RGB</h2>
+                    <h2 id="schemeTitle2">🔌 СХЕМА ПОДКЛЮЧЕНИЯ RGB</h2>
                     <div class="scheme-grid">
-                        <div class="scheme-item"><span>⚫</span><strong class="pin-gnd">GND → GND</strong></div>
-                        <div class="scheme-item"><span>🔴</span><strong class="pin-red">R → D1 + 220 Ом</strong></div>
-                        <div class="scheme-item"><span>🟢</span><strong class="pin-green">G → D2 + 220 Ом</strong></div>
-                        <div class="scheme-item"><span>🔵</span><strong class="pin-blue">B → D3 + 220 Ом</strong></div>
+                        <div class="scheme-item"><span>⚫</span><strong class="pin-gnd"><span id="rgbPin1">GND → GND</span></strong></div>
+                        <div class="scheme-item"><span>🔴</span><strong class="pin-red"><span id="rgbPin2">R → D1 + 220 Ом</span></strong></div>
+                        <div class="scheme-item"><span>🟢</span><strong class="pin-green"><span id="rgbPin3">G → D2 + 220 Ом</span></strong></div>
+                        <div class="scheme-item"><span>🔵</span><strong class="pin-blue"><span id="rgbPin4">B → D3 + 220 Ом</span></strong></div>
                     </div>
                 </div>
                 
                 <div class="code-section">
-                    <h2>📟 КОД ДЛЯ RGB</h2>
+                    <h2 id="codeTitle2">📟 КОД ДЛЯ RGB</h2>
                     <div class="code-block">
                         <pre>
 #include &lt;ESP8266WiFi.h&gt;
@@ -872,19 +874,19 @@ void loop() {
             
             <!-- Вкладка 3 - Arduino Uno/Nano -->
             <div id="tab3" class="tab-content">
-                <div class="greeting">🔧 Arduino Uno и Nano</div>
+                <div class="greeting" id="greeting3">🔧 Arduino Uno и Nano</div>
                 
                 <div class="connection-scheme">
-                    <h2>🔌 ПРОЕКТ 1: Мигание светодиодом</h2>
+                    <h2 id="schemeTitle3">🔌 ПРОЕКТ 1: Мигание светодиодом</h2>
                     <div class="scheme-grid">
-                        <div class="scheme-item"><span>🔴</span><strong class="pin-red">LED + → Pin 13</strong></div>
-                        <div class="scheme-item"><span>⚫</span><strong class="pin-gnd">LED - → GND</strong></div>
-                        <div class="scheme-item"><span>⚡</span><strong>Резистор 220 Ом</strong></div>
+                        <div class="scheme-item"><span>🔴</span><strong class="pin-red"><span id="blinkPin1">LED + → Pin 13</span></strong></div>
+                        <div class="scheme-item"><span>⚫</span><strong class="pin-gnd"><span id="blinkPin2">LED - → GND</span></strong></div>
+                        <div class="scheme-item"><span>⚡</span><strong><span id="blinkPin3">Резистор 220 Ом</span></strong></div>
                     </div>
                 </div>
                 
                 <div class="code-section">
-                    <h2>📟 КОД Blink</h2>
+                    <h2 id="codeTitle3">📟 КОД Blink</h2>
                     <div class="code-block">
                         <pre>
 void setup() {
@@ -905,19 +907,193 @@ void loop() {
             <!-- Вкладка 4 - СКОРО -->
             <div id="tab4" class="tab-content">
                 <div class="big-soon">
-                    <h1>СКОРО...</h1>
+                    <h1 id="soonText">СКОРО...</h1>
                 </div>
             </div>
         </div>
         
-        <!-- ===== ИСПРАВЛЕНО ЗДЕСЬ ===== -->
         <div class="footer">
-            <p class="username">АРДУИНО ПРОЕКТЫ И ПАЯЛЬНИКИ © 2026</p>
+            <p class="username" id="footerText">АРДУИНО ПРОЕКТЫ И ПАЯЛЬНИКИ © 2026</p>
         </div>
-        <!-- ============================= -->
     </div>
 
     <script>
+        let currentLang = 'ru';
+        
+        const translations = {
+            ru: {
+                langBtn: '🇷🇺 Русский',
+                subscribe: 'ПОДПИШИСЬ: АРДУИНО ПРОЕКТЫ И ПАЯЛЬНИКИ',
+                mainTitle: '🔧 АРДУИНО ПРОЕКТЫ И ПАЯЛЬНИКИ 🔧',
+                mainDesc: 'Метеостанция, RGB светодиод и другие проекты',
+                badge: '2026',
+                tab1: '📋 1. Метеостанция',
+                tab2: '💡 2. RGB светодиод',
+                tab3: '🔧 3. Arduino Uno/Nano',
+                tab4: '⚡ 4. СКОРО',
+                greeting1: '👋 ВСЕМ ПРИВЕТ!',
+                story1p1: '🔥 Как и обещал, расскажу про проект метеостанция. Взял ESP8266, потом DHT22. Решил сначала сделать сайт - сделал, мне не понравилось. Потом создал бота в Telegram, делал его 2 дня.',
+                story1p2: '🤖 Бот показывает температуру и влажность. Сделал его приватным. Прошил ESP, подключил к повербанку, взял коробку, вырезал отверстия, просунул датчик - и понеслась!',
+                highlight1: '✨ СТАЛ ДОБАВЛЯТЬ В БОТА ПРИКОЛЫ ✨',
+                story2: '📱 Создавал его через @BotFather, написал код в Arduino IDE. Код будет ниже. Настолько понравился проект, что решил заказать печать у @Bolodechka. Пока что думаю...',
+                signature: 'АРДУИНО ПРОЕКТЫ И ПАЯЛЬНИКИ, 25.02.2026 21:34',
+                schemeTitle1: '🔌 СХЕМА ПОДКЛЮЧЕНИЯ DHT22',
+                pin1: 'VCC → 3.3V',
+                pin2: 'GND → GND',
+                pin3: 'DATA → D2 (GPIO4)',
+                pin4: 'Резистор 10кОм',
+                componentsTitle: '⚡ КОМПОНЕНТЫ МЕТЕОСТАНЦИИ ⚡',
+                comp1: 'ESP8266',
+                comp2: 'Датчик DHT22',
+                comp3: 'Резисторы 10кОм',
+                comp4: 'Повербанк',
+                codeTitle1: '📟 ПОЛНЫЙ КОД МЕТЕОСТАНЦИИ',
+                greeting2: '🌈 RGB светодиод + ESP8266',
+                schemeTitle2: '🔌 СХЕМА ПОДКЛЮЧЕНИЯ RGB',
+                rgbPin1: 'GND → GND',
+                rgbPin2: 'R → D1 + 220 Ом',
+                rgbPin3: 'G → D2 + 220 Ом',
+                rgbPin4: 'B → D3 + 220 Ом',
+                codeTitle2: '📟 КОД ДЛЯ RGB',
+                greeting3: '🔧 Arduino Uno и Nano',
+                schemeTitle3: '🔌 ПРОЕКТ 1: Мигание светодиодом',
+                blinkPin1: 'LED + → Pin 13',
+                blinkPin2: 'LED - → GND',
+                blinkPin3: 'Резистор 220 Ом',
+                codeTitle3: '📟 КОД Blink',
+                soonText: 'СКОРО...',
+                footer: 'АРДУИНО ПРОЕКТЫ И ПАЯЛЬНИКИ © 2026'
+            },
+            en: {
+                langBtn: '🇬🇧 English',
+                subscribe: 'SUBSCRIBE: ARDUINO PROJECTS AND SOLDERING',
+                mainTitle: '🔧 ARDUINO PROJECTS AND SOLDERING 🔧',
+                mainDesc: 'Weather station, RGB LED and other projects',
+                badge: '2026',
+                tab1: '📋 1. Weather Station',
+                tab2: '💡 2. RGB LED',
+                tab3: '🔧 3. Arduino Uno/Nano',
+                tab4: '⚡ 4. SOON',
+                greeting1: '👋 HELLO EVERYONE!',
+                story1p1: '🔥 As promised, I\'ll tell you about the weather station project. I took ESP8266, then DHT22. First I decided to make a website - I did it, I didn\'t like it. Then I created a Telegram bot, it took 2 days.',
+                story1p2: '🤖 The bot shows temperature and humidity. I made it private. Flashed ESP, connected to power bank, took a box, cut holes, put the sensor in - and away we go!',
+                highlight1: '✨ STARTED ADDING FUN STUFF TO THE BOT ✨',
+                story2: '📱 Created it via @BotFather, wrote the code in Arduino IDE. The code will be below. I liked the project so much that I decided to order a print from @Bolodechka. Still thinking...',
+                signature: 'ARDUINO PROJECTS AND SOLDERING, 25.02.2026 21:34',
+                schemeTitle1: '🔌 DHT22 CONNECTION DIAGRAM',
+                pin1: 'VCC → 3.3V',
+                pin2: 'GND → GND',
+                pin3: 'DATA → D2 (GPIO4)',
+                pin4: '10kΩ Resistor',
+                componentsTitle: '⚡ WEATHER STATION COMPONENTS ⚡',
+                comp1: 'ESP8266',
+                comp2: 'DHT22 Sensor',
+                comp3: '10kΩ Resistors',
+                comp4: 'Power Bank',
+                codeTitle1: '📟 FULL WEATHER STATION CODE',
+                greeting2: '🌈 RGB LED + ESP8266',
+                schemeTitle2: '🔌 RGB CONNECTION DIAGRAM',
+                rgbPin1: 'GND → GND',
+                rgbPin2: 'R → D1 + 220Ω',
+                rgbPin3: 'G → D2 + 220Ω',
+                rgbPin4: 'B → D3 + 220Ω',
+                codeTitle2: '📟 RGB CODE',
+                greeting3: '🔧 Arduino Uno and Nano',
+                schemeTitle3: '🔌 PROJECT 1: LED Blink',
+                blinkPin1: 'LED + → Pin 13',
+                blinkPin2: 'LED - → GND',
+                blinkPin3: '220Ω Resistor',
+                codeTitle3: '📟 Blink CODE',
+                soonText: 'SOON...',
+                footer: 'ARDUINO PROJECTS AND SOLDERING © 2026'
+            }
+        };
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'ru' ? 'en' : 'ru';
+            updateLanguage();
+            localStorage.setItem('language', currentLang);
+        }
+        
+        function updateLanguage() {
+            const t = translations[currentLang];
+            
+            document.getElementById('langBtn').textContent = t.langBtn;
+            document.getElementById('subscribeText').textContent = t.subscribe;
+            document.getElementById('mainTitle').textContent = t.mainTitle;
+            document.getElementById('mainDesc').textContent = t.mainDesc;
+            document.getElementById('badge').textContent = t.badge;
+            document.getElementById('tab1Text').textContent = t.tab1;
+            document.getElementById('tab2Text').textContent = t.tab2;
+            document.getElementById('tab3Text').textContent = t.tab3;
+            document.getElementById('tab4Text').textContent = t.tab4;
+            document.getElementById('greeting1').textContent = t.greeting1;
+            
+            // Обновляем story
+            const storyElem = document.getElementById('story1');
+            storyElem.innerHTML = '';
+            
+            const p1 = document.createElement('p');
+            p1.textContent = t.story1p1;
+            storyElem.appendChild(p1);
+            
+            const p2 = document.createElement('p');
+            p2.textContent = t.story1p2;
+            storyElem.appendChild(p2);
+            
+            const divHighlight = document.createElement('div');
+            divHighlight.style.textAlign = 'center';
+            const spanHighlight = document.createElement('span');
+            spanHighlight.className = 'highlight';
+            spanHighlight.id = 'highlight1';
+            spanHighlight.textContent = t.highlight1;
+            divHighlight.appendChild(spanHighlight);
+            storyElem.appendChild(divHighlight);
+            
+            const p3 = document.createElement('p');
+            p3.id = 'story2';
+            p3.textContent = t.story2;
+            storyElem.appendChild(p3);
+            
+            const pSignature = document.createElement('p');
+            pSignature.style.textAlign = 'right';
+            pSignature.style.fontStyle = 'italic';
+            pSignature.style.marginTop = '30px';
+            pSignature.id = 'signature';
+            pSignature.textContent = t.signature;
+            storyElem.appendChild(pSignature);
+            
+            document.getElementById('schemeTitle1').textContent = t.schemeTitle1;
+            document.getElementById('pin1').textContent = t.pin1;
+            document.getElementById('pin2').textContent = t.pin2;
+            document.getElementById('pin3').textContent = t.pin3;
+            document.getElementById('pin4').textContent = t.pin4;
+            document.getElementById('componentsTitle').textContent = t.componentsTitle;
+            document.getElementById('comp1').textContent = t.comp1;
+            document.getElementById('comp2').textContent = t.comp2;
+            document.getElementById('comp3').textContent = t.comp3;
+            document.getElementById('comp4').textContent = t.comp4;
+            document.getElementById('codeTitle1').textContent = t.codeTitle1;
+            
+            document.getElementById('greeting2').textContent = t.greeting2;
+            document.getElementById('schemeTitle2').textContent = t.schemeTitle2;
+            document.getElementById('rgbPin1').textContent = t.rgbPin1;
+            document.getElementById('rgbPin2').textContent = t.rgbPin2;
+            document.getElementById('rgbPin3').textContent = t.rgbPin3;
+            document.getElementById('rgbPin4').textContent = t.rgbPin4;
+            document.getElementById('codeTitle2').textContent = t.codeTitle2;
+            
+            document.getElementById('greeting3').textContent = t.greeting3;
+            document.getElementById('schemeTitle3').textContent = t.schemeTitle3;
+            document.getElementById('blinkPin1').textContent = t.blinkPin1;
+            document.getElementById('blinkPin2').textContent = t.blinkPin2;
+            document.getElementById('blinkPin3').textContent = t.blinkPin3;
+            document.getElementById('codeTitle3').textContent = t.codeTitle3;
+            
+            document.getElementById('soonText').textContent = t.soonText;
+            document.getElementById('footerText').textContent = t.footer;
+        }
+        
         function toggleTheme() {
             document.body.classList.toggle('dark-theme');
             document.getElementById('themeBtn').textContent = 
@@ -953,9 +1129,11 @@ void loop() {
             evt.currentTarget.classList.add('active');
         }
         
+        // Загрузка сохраненных настроек
         const savedTheme = localStorage.getItem('theme');
         const savedDevice = localStorage.getItem('device');
         const savedFontSize = localStorage.getItem('fontSize');
+        const savedLang = localStorage.getItem('language');
         
         if (savedTheme === 'dark') {
             document.body.classList.add('dark-theme');
@@ -972,6 +1150,11 @@ void loop() {
             document.body.style.setProperty('--base-font-size', savedFontSize + 'px');
             document.getElementById('fontSizeSlider').value = savedFontSize;
             document.getElementById('fontSizeValue').textContent = savedFontSize + 'px';
+        }
+        
+        if (savedLang) {
+            currentLang = savedLang;
+            updateLanguage();
         }
     </script>
 </body>
