@@ -18,7 +18,6 @@
             padding: 20px;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             transition: all 0.3s;
-            /* Базовый размер шрифта - будет меняться через JS */
             --base-font-size: 18px;
             font-size: var(--base-font-size);
         }
@@ -74,6 +73,11 @@
         body.dark-theme .scheme-item {
             background: rgba(255, 255, 255, 0.05);
             color: #f0f0f0;
+        }
+        
+        body.dark-theme .big-soon {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid #4a4a8a;
         }
         
         /* Панель управления */
@@ -165,7 +169,6 @@
             cursor: pointer;
         }
         
-        /* Кнопки + и - */
         .font-size-btn {
             background: rgba(255, 255, 255, 0.2);
             border: none;
@@ -254,8 +257,6 @@
         body.phone-mode .footer {
             padding: 15px;
         }
-        
-        /* Режим компьютера - базовые стили уже через переменную */
         
         .container {
             max-width: 1100px;
@@ -482,10 +483,12 @@
             font-size: 0.95em;
             color: white;
             transition: all 0.3s;
+            display: inline-block;
         }
         
         .shop-btn:hover {
             transform: scale(1.05);
+            opacity: 0.9;
         }
         
         .wb { background: #cb11ab; }
@@ -595,6 +598,34 @@
         .pin-blue { color: #4444ff; font-weight: bold; }
         .pin-gnd { color: #666; font-weight: bold; }
         
+        /* Большой СКОРО */
+        .big-soon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 500px;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border-radius: 30px;
+            margin: 30px 0;
+            border: 3px dashed #667eea;
+            animation: pulse 2s infinite;
+        }
+        
+        .big-soon h1 {
+            font-size: 8em;
+            color: #667eea;
+            text-shadow: 5px 5px 0 rgba(102, 126, 234, 0.3);
+            letter-spacing: 10px;
+        }
+        
+        @media (max-width: 768px) {
+            .big-soon h1 {
+                font-size: 4em;
+            }
+        }
+        
         .footer {
             background: rgba(248, 249, 250, 0.7);
             backdrop-filter: blur(5px);
@@ -616,7 +647,6 @@
             font-size: 1.3em;
         }
         
-        /* Адаптация для маленьких экранов */
         @media (max-width: 480px) {
             .control-panel {
                 top: 10px;
@@ -658,7 +688,6 @@
         <button class="control-btn" onclick="toggleTheme()" id="themeBtn" title="Сменить тему">🌙</button>
         <button class="control-btn device-btn" onclick="toggleDevice()" id="deviceBtn">💻 Компьютер</button>
         
-        <!-- Ползунок размера шрифта -->
         <div class="font-size-control">
             <button class="font-size-btn" onclick="changeFontSize(-2)">−</button>
             <input type="range" min="12" max="32" value="18" class="font-size-slider" id="fontSizeSlider" oninput="updateFontSize(this.value)">
@@ -684,11 +713,12 @@
             <div class="tabs">
                 <button class="tab-btn active" onclick="openTab(event, 'tab1')">📋 1. Метеостанция</button>
                 <button class="tab-btn" onclick="openTab(event, 'tab2')">💡 2. RGB + ESP</button>
-                <button class="tab-btn" onclick="openTab(event, 'tab3')">⚡ 3. Скоро...</button>
+                <button class="tab-btn" onclick="openTab(event, 'tab3')">⚡ 3. Arduino Uno/Nano/ESP32</button>
             </div>
             
-            <!-- ВКЛАДКА 1 - МЕТЕОСТАНЦИЯ -->
+            <!-- ВКЛАДКА 1 - МЕТЕОСТАНЦИЯ (без изменений) -->
             <div id="tab1" class="tab-content active">
+                <!-- ... (весь код метеостанции из предыдущего ответа) ... -->
                 <div class="greeting">
                     👋 ВСЕМ ПРИВЕТ! КАК И ОБЕЩАЛ, РАССКАЖУ ПРО ПРОЕКТ МЕТЕОСТАНЦИЯ
                 </div>
@@ -706,64 +736,75 @@
                 <h2 style="color: #667eea; margin: 30px 0 20px; text-align: center;">⚡ КОМПОНЕНТЫ МЕТЕОСТАНЦИИ ⚡</h2>
                 
                 <div class="components-grid">
+                    <!-- ESP8266 -->
                     <div class="component-card">
                         <div class="component-icon">🔹</div>
                         <h3>ESP8266 (NodeMCU)</h3>
                         <p>Микроконтроллер с Wi-Fi</p>
                         <div class="shop-buttons">
-                            <a href="#" class="shop-btn wb">Wildberries</a>
-                            <a href="#" class="shop-btn ozon">Ozon</a>
-                            <a href="#" class="shop-btn aliexpress">AliExpress</a>
+                            <a href="https://www.wildberries.ru/catalog/0/search.aspx?search=esp8266" target="_blank" class="shop-btn wb">Wildberries</a>
+                            <a href="https://www.ozon.ru/search/?text=esp8266" target="_blank" class="shop-btn ozon">Ozon</a>
+                            <a href="https://aliexpress.ru/wholesale?SearchText=esp8266" target="_blank" class="shop-btn aliexpress">AliExpress</a>
                         </div>
                     </div>
+                    
+                    <!-- DHT22 -->
                     <div class="component-card">
                         <div class="component-icon">🌡️</div>
                         <h3>Датчик DHT22</h3>
                         <p>Температура и влажность</p>
                         <div class="shop-buttons">
-                            <a href="#" class="shop-btn wb">Wildberries</a>
-                            <a href="#" class="shop-btn ozon">Ozon</a>
-                            <a href="#" class="shop-btn aliexpress">AliExpress</a>
+                            <a href="https://www.wildberries.ru/catalog/0/search.aspx?search=dht22" target="_blank" class="shop-btn wb">Wildberries</a>
+                            <a href="https://www.ozon.ru/search/?text=dht22" target="_blank" class="shop-btn ozon">Ozon</a>
+                            <a href="https://aliexpress.ru/wholesale?SearchText=dht22" target="_blank" class="shop-btn aliexpress">AliExpress</a>
                         </div>
                     </div>
+                    
+                    <!-- Повербанк -->
                     <div class="component-card">
                         <div class="component-icon">🔋</div>
                         <h3>Повербанк</h3>
                         <p>Для автономного питания</p>
                         <div class="shop-buttons">
-                            <a href="#" class="shop-btn wb">Wildberries</a>
-                            <a href="#" class="shop-btn ozon">Ozon</a>
-                            <a href="#" class="shop-btn aliexpress">AliExpress</a>
+                            <a href="https://www.wildberries.ru/catalog/0/search.aspx?search=повербанк" target="_blank" class="shop-btn wb">Wildberries</a>
+                            <a href="https://www.ozon.ru/search/?text=повербанк" target="_blank" class="shop-btn ozon">Ozon</a>
+                            <a href="https://aliexpress.ru/wholesale?SearchText=powerbank" target="_blank" class="shop-btn aliexpress">AliExpress</a>
                         </div>
                     </div>
+                    
+                    <!-- Корпус -->
                     <div class="component-card">
                         <div class="component-icon">📦</div>
                         <h3>Корпус</h3>
                         <p>Пластиковая коробка</p>
                         <div class="shop-buttons">
-                            <a href="#" class="shop-btn wb">Wildberries</a>
-                            <a href="#" class="shop-btn ozon">Ozon</a>
-                            <a href="#" class="shop-btn aliexpress">AliExpress</a>
+                            <a href="https://www.wildberries.ru/catalog/0/search.aspx?search=корпус+для+arduino" target="_blank" class="shop-btn wb">Wildberries</a>
+                            <a href="https://www.ozon.ru/search/?text=корпус+для+arduino" target="_blank" class="shop-btn ozon">Ozon</a>
+                            <a href="https://aliexpress.ru/wholesale?SearchText=arduino+case" target="_blank" class="shop-btn aliexpress">AliExpress</a>
                         </div>
                     </div>
+                    
+                    <!-- Провода -->
                     <div class="component-card">
                         <div class="component-icon">🔌</div>
                         <h3>Провода</h3>
                         <p>Соединительные</p>
                         <div class="shop-buttons">
-                            <a href="#" class="shop-btn wb">Wildberries</a>
-                            <a href="#" class="shop-btn ozon">Ozon</a>
-                            <a href="#" class="shop-btn aliexpress">AliExpress</a>
+                            <a href="https://www.wildberries.ru/catalog/0/search.aspx?search=провода+для+arduino" target="_blank" class="shop-btn wb">Wildberries</a>
+                            <a href="https://www.ozon.ru/search/?text=провода+для+arduino" target="_blank" class="shop-btn ozon">Ozon</a>
+                            <a href="https://aliexpress.ru/wholesale?SearchText=dupont+cable" target="_blank" class="shop-btn aliexpress">AliExpress</a>
                         </div>
                     </div>
+                    
+                    <!-- Паяльник -->
                     <div class="component-card">
                         <div class="component-icon">🔥</div>
                         <h3>Паяльник</h3>
                         <p>Для пайки</p>
                         <div class="shop-buttons">
-                            <a href="#" class="shop-btn wb">Wildberries</a>
-                            <a href="#" class="shop-btn ozon">Ozon</a>
-                            <a href="#" class="shop-btn aliexpress">AliExpress</a>
+                            <a href="https://www.wildberries.ru/catalog/0/search.aspx?search=паяльник" target="_blank" class="shop-btn wb">Wildberries</a>
+                            <a href="https://www.ozon.ru/search/?text=паяльник" target="_blank" class="shop-btn ozon">Ozon</a>
+                            <a href="https://aliexpress.ru/wholesale?SearchText=soldering+iron" target="_blank" class="shop-btn aliexpress">AliExpress</a>
                         </div>
                     </div>
                 </div>
@@ -885,8 +926,9 @@ void loop() {
                 </div>
             </div>
             
-            <!-- ВКЛАДКА 2 - RGB + ESP -->
+            <!-- ВКЛАДКА 2 - RGB + ESP (без изменений) -->
             <div id="tab2" class="tab-content">
+                <!-- ... (весь код RGB из предыдущего ответа) ... -->
                 <div class="greeting">🌈 RGB светодиод + ESP8266</div>
                 
                 <div class="story">
@@ -920,44 +962,51 @@ void loop() {
                 <h2 style="color: #667eea; margin: 30px 0 20px; text-align: center;">⚡ КОМПОНЕНТЫ RGB ⚡</h2>
                 
                 <div class="components-grid">
+                    <!-- ESP8266 -->
                     <div class="component-card">
                         <div class="component-icon">🔹</div>
                         <h3>ESP8266</h3>
                         <p>Микроконтроллер с Wi-Fi</p>
                         <div class="shop-buttons">
-                            <a href="#" class="shop-btn wb">Wildberries</a>
-                            <a href="#" class="shop-btn ozon">Ozon</a>
-                            <a href="#" class="shop-btn aliexpress">AliExpress</a>
+                            <a href="https://www.wildberries.ru/catalog/0/search.aspx?search=esp8266" target="_blank" class="shop-btn wb">Wildberries</a>
+                            <a href="https://www.ozon.ru/search/?text=esp8266" target="_blank" class="shop-btn ozon">Ozon</a>
+                            <a href="https://aliexpress.ru/wholesale?SearchText=esp8266" target="_blank" class="shop-btn aliexpress">AliExpress</a>
                         </div>
                     </div>
+                    
+                    <!-- RGB светодиод -->
                     <div class="component-card">
                         <div class="component-icon">🌈</div>
                         <h3>RGB светодиод</h3>
                         <p>Общий катод, 5mm</p>
                         <div class="shop-buttons">
-                            <a href="#" class="shop-btn wb">Wildberries</a>
-                            <a href="#" class="shop-btn ozon">Ozon</a>
-                            <a href="#" class="shop-btn aliexpress">AliExpress</a>
+                            <a href="https://www.wildberries.ru/catalog/0/search.aspx?search=rgb+светодиод" target="_blank" class="shop-btn wb">Wildberries</a>
+                            <a href="https://www.ozon.ru/search/?text=rgb+светодиод" target="_blank" class="shop-btn ozon">Ozon</a>
+                            <a href="https://aliexpress.ru/wholesale?SearchText=rgb+led" target="_blank" class="shop-btn aliexpress">AliExpress</a>
                         </div>
                     </div>
+                    
+                    <!-- Резисторы -->
                     <div class="component-card">
                         <div class="component-icon">⚡</div>
                         <h3>Резисторы 220 Ом</h3>
                         <p>3 штуки</p>
                         <div class="shop-buttons">
-                            <a href="#" class="shop-btn wb">Wildberries</a>
-                            <a href="#" class="shop-btn ozon">Ozon</a>
-                            <a href="#" class="shop-btn aliexpress">AliExpress</a>
+                            <a href="https://www.wildberries.ru/catalog/0/search.aspx?search=резисторы+220+ом" target="_blank" class="shop-btn wb">Wildberries</a>
+                            <a href="https://www.ozon.ru/search/?text=резисторы+220+ом" target="_blank" class="shop-btn ozon">Ozon</a>
+                            <a href="https://aliexpress.ru/wholesale?SearchText=220+ohm+resistor" target="_blank" class="shop-btn aliexpress">AliExpress</a>
                         </div>
                     </div>
+                    
+                    <!-- Провода -->
                     <div class="component-card">
                         <div class="component-icon">🔌</div>
                         <h3>Провода</h3>
                         <p>Папа-мама</p>
                         <div class="shop-buttons">
-                            <a href="#" class="shop-btn wb">Wildberries</a>
-                            <a href="#" class="shop-btn ozon">Ozon</a>
-                            <a href="#" class="shop-btn aliexpress">AliExpress</a>
+                            <a href="https://www.wildberries.ru/catalog/0/search.aspx?search=провода+для+arduino" target="_blank" class="shop-btn wb">Wildberries</a>
+                            <a href="https://www.ozon.ru/search/?text=провода+для+arduino" target="_blank" class="shop-btn ozon">Ozon</a>
+                            <a href="https://aliexpress.ru/wholesale?SearchText=dupont+cable" target="_blank" class="shop-btn aliexpress">AliExpress</a>
                         </div>
                     </div>
                 </div>
@@ -1214,42 +1263,208 @@ void loop() {
                 </div>
             </div>
             
-            <!-- ВКЛАДКА 3 - СКОРО -->
+            <!-- ВКЛАДКА 3 - Arduino Uno/Nano/ESP32 с большим СКОРО -->
             <div id="tab3" class="tab-content">
-                <div style="text-align: center; padding: 50px 20px;">
-                    <h1 style="color: #667eea; font-size: 4em;">⚡</h1>
-                    <h2 style="color: #667eea; margin-bottom: 30px;">НОВЫЕ ПРОЕКТЫ СКОРО!</h2>
+                <div class="big-soon">
+                    <h1>СКОРО...</h1>
+                </div>
+                
+                <!-- Arduino Uno -->
+                <div class="code-section">
+                    <h2>📟 ARDUINO UNO - Мигание светодиодом</h2>
+                    <div class="connection-scheme" style="margin-top: 0;">
+                        <h3 style="color: #667eea;">🔌 СХЕМА ПОДКЛЮЧЕНИЯ</h3>
+                        <div class="scheme-grid">
+                            <div class="scheme-item">
+                                <span>🔴</span>
+                                <strong class="pin-red">Светодиод + → Pin 13</strong>
+                            </div>
+                            <div class="scheme-item">
+                                <span>⚫</span>
+                                <strong class="pin-gnd">Светодиод - → GND</strong>
+                            </div>
+                        </div>
+                        <p style="text-align: center; margin-top: 15px;">✨ Резистор 220 Ом последовательно со светодиодом</p>
+                    </div>
+                    <div class="code-block">
+                        <pre>
+// Arduino Uno / Nano - Мигание светодиодом
+// Подключение: светодиод к пину 13 через резистор 220 Ом
+
+void setup() {
+  pinMode(13, OUTPUT);  // Настраиваем пин 13 как выход
+}
+
+void loop() {
+  digitalWrite(13, HIGH);  // Включаем светодиод
+  delay(1000);              // Ждем 1 секунду
+  digitalWrite(13, LOW);   // Выключаем светодиод
+  delay(1000);              // Ждем 1 секунду
+}
+                        </pre>
+                    </div>
+                </div>
+                
+                <!-- Arduino Nano -->
+                <div class="code-section">
+                    <h2>📟 ARDUINO NANO - Кнопка и светодиод</h2>
+                    <div class="connection-scheme" style="margin-top: 0;">
+                        <h3 style="color: #667eea;">🔌 СХЕМА ПОДКЛЮЧЕНИЯ</h3>
+                        <div class="scheme-grid">
+                            <div class="scheme-item">
+                                <span>🔴</span>
+                                <strong class="pin-red">Светодиод + → Pin 9</strong>
+                            </div>
+                            <div class="scheme-item">
+                                <span>⚫</span>
+                                <strong class="pin-gnd">Светодиод - → GND</strong>
+                            </div>
+                            <div class="scheme-item">
+                                <span>🔵</span>
+                                <strong>Кнопка 1 → Pin 2</strong>
+                            </div>
+                            <div class="scheme-item">
+                                <span>🔵</span>
+                                <strong>Кнопка 2 → GND</strong>
+                            </div>
+                        </div>
+                        <p style="text-align: center; margin-top: 15px;">✨ Резистор 10 кОм между Pin 2 и VCC (подтяжка)</p>
+                    </div>
+                    <div class="code-block">
+                        <pre>
+// Arduino Nano - Управление светодиодом кнопкой
+// Подключение: кнопка к пину 2, светодиод к пину 9
+
+const int buttonPin = 2;     // Пин кнопки
+const int ledPin = 9;        // Пин светодиода
+int buttonState = 0;         // Состояние кнопки
+
+void setup() {
+  pinMode(ledPin, OUTPUT);
+  pinMode(buttonPin, INPUT_PULLUP);  // Внутренняя подтяжка
+}
+
+void loop() {
+  buttonState = digitalRead(buttonPin);
+  
+  if (buttonState == LOW) {  // Кнопка нажата
+    digitalWrite(ledPin, HIGH);
+  } else {
+    digitalWrite(ledPin, LOW);
+  }
+}
+                        </pre>
+                    </div>
+                </div>
+                
+                <!-- ESP32 -->
+                <div class="code-section">
+                    <h2>📟 ESP32 - Подключение к Wi-Fi</h2>
+                    <div class="connection-scheme" style="margin-top: 0;">
+                        <h3 style="color: #667eea;">🔌 СХЕМА ПОДКЛЮЧЕНИЯ</h3>
+                        <div class="scheme-grid">
+                            <div class="scheme-item">
+                                <span>🔴</span>
+                                <strong class="pin-red">Светодиод + → GPIO 2</strong>
+                            </div>
+                            <div class="scheme-item">
+                                <span>⚫</span>
+                                <strong class="pin-gnd">Светодиод - → GND</strong>
+                            </div>
+                        </div>
+                        <p style="text-align: center; margin-top: 15px;">✨ На ESP32 GPIO 2 обычно встроенный светодиод</p>
+                    </div>
+                    <div class="code-block">
+                        <pre>
+// ESP32 - Подключение к Wi-Fi и мигание светодиодом
+
+#include &lt;WiFi.h&gt;
+
+const char* ssid = "ваш Wi-Fi";
+const char* password = "ваш пароль";
+
+const int ledPin = 2;  // Встроенный светодиод на GPIO 2
+
+void setup() {
+  Serial.begin(115200);
+  pinMode(ledPin, OUTPUT);
+  
+  // Подключение к Wi-Fi
+  Serial.print("Подключение к ");
+  Serial.println(ssid);
+  
+  WiFi.begin(ssid, password);
+  
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(500);
+    Serial.print(".");
+  }
+  
+  Serial.println("");
+  Serial.println("Wi-Fi подключен!");
+  Serial.print("IP адрес: ");
+  Serial.println(WiFi.localIP());
+}
+
+void loop() {
+  digitalWrite(ledPin, HIGH);   // Включить светодиод
+  delay(1000);
+  digitalWrite(ledPin, LOW);    // Выключить светодиод
+  delay(1000);
+}
+                        </pre>
+                    </div>
+                </div>
+                
+                <!-- Компоненты для Arduino -->
+                <h2 style="color: #667eea; margin: 30px 0 20px; text-align: center;">⚡ КОМПОНЕНТЫ ДЛЯ ARDUINO ⚡</h2>
+                
+                <div class="components-grid">
+                    <!-- Arduino Uno -->
+                    <div class="component-card">
+                        <div class="component-icon">🔹</div>
+                        <h3>Arduino Uno</h3>
+                        <p>Классическая плата</p>
+                        <div class="shop-buttons">
+                            <a href="https://www.wildberries.ru/catalog/0/search.aspx?search=arduino+uno" target="_blank" class="shop-btn wb">Wildberries</a>
+                            <a href="https://www.ozon.ru/search/?text=arduino+uno" target="_blank" class="shop-btn ozon">Ozon</a>
+                            <a href="https://aliexpress.ru/wholesale?SearchText=arduino+uno" target="_blank" class="shop-btn aliexpress">AliExpress</a>
+                        </div>
+                    </div>
                     
-                    <div class="components-grid">
-                        <div class="component-card">
-                            <div class="component-icon">🚗</div>
-                            <h3>Робот-машинка</h3>
-                            <p>На пульте управления</p>
-                            <div class="shop-buttons">
-                                <a href="#" class="shop-btn wb">Wildberries</a>
-                                <a href="#" class="shop-btn ozon">Ozon</a>
-                                <a href="#" class="shop-btn aliexpress">AliExpress</a>
-                            </div>
+                    <!-- Arduino Nano -->
+                    <div class="component-card">
+                        <div class="component-icon">🔹</div>
+                        <h3>Arduino Nano</h3>
+                        <p>Компактная версия</p>
+                        <div class="shop-buttons">
+                            <a href="https://www.wildberries.ru/catalog/0/search.aspx?search=arduino+nano" target="_blank" class="shop-btn wb">Wildberries</a>
+                            <a href="https://www.ozon.ru/search/?text=arduino+nano" target="_blank" class="shop-btn ozon">Ozon</a>
+                            <a href="https://aliexpress.ru/wholesale?SearchText=arduino+nano" target="_blank" class="shop-btn aliexpress">AliExpress</a>
                         </div>
-                        <div class="component-card">
-                            <div class="component-icon">📟</div>
-                            <h3>Метеостанция с дисплеем</h3>
-                            <p>LCD 1602 + DHT22</p>
-                            <div class="shop-buttons">
-                                <a href="#" class="shop-btn wb">Wildberries</a>
-                                <a href="#" class="shop-btn ozon">Ozon</a>
-                                <a href="#" class="shop-btn aliexpress">AliExpress</a>
-                            </div>
+                    </div>
+                    
+                    <!-- ESP32 -->
+                    <div class="component-card">
+                        <div class="component-icon">🔹</div>
+                        <h3>ESP32</h3>
+                        <p>Wi-Fi + Bluetooth</p>
+                        <div class="shop-buttons">
+                            <a href="https://www.wildberries.ru/catalog/0/search.aspx?search=esp32" target="_blank" class="shop-btn wb">Wildberries</a>
+                            <a href="https://www.ozon.ru/search/?text=esp32" target="_blank" class="shop-btn ozon">Ozon</a>
+                            <a href="https://aliexpress.ru/wholesale?SearchText=esp32" target="_blank" class="shop-btn aliexpress">AliExpress</a>
                         </div>
-                        <div class="component-card">
-                            <div class="component-icon">💡</div>
-                            <h3>Умный светильник</h3>
-                            <p>На датчике движения</p>
-                            <div class="shop-buttons">
-                                <a href="#" class="shop-btn wb">Wildberries</a>
-                                <a href="#" class="shop-btn ozon">Ozon</a>
-                                <a href="#" class="shop-btn aliexpress">AliExpress</a>
-                            </div>
+                    </div>
+                    
+                    <!-- Набор кнопок -->
+                    <div class="component-card">
+                        <div class="component-icon">🔘</div>
+                        <h3>Кнопки тактовые</h3>
+                        <p>10 штук</p>
+                        <div class="shop-buttons">
+                            <a href="https://www.wildberries.ru/catalog/0/search.aspx?search=тактовые+кнопки+arduino" target="_blank" class="shop-btn wb">Wildberries</a>
+                            <a href="https://www.ozon.ru/search/?text=тактовые+кнопки" target="_blank" class="shop-btn ozon">Ozon</a>
+                            <a href="https://aliexpress.ru/wholesale?SearchText=tact+switch" target="_blank" class="shop-btn aliexpress">AliExpress</a>
                         </div>
                     </div>
                 </div>
@@ -1263,7 +1478,6 @@ void loop() {
     </div>
 
     <script>
-        // Переключение темы
         function toggleTheme() {
             const body = document.body;
             const themeBtn = document.getElementById('themeBtn');
@@ -1272,7 +1486,6 @@ void loop() {
             localStorage.setItem('theme', body.classList.contains('dark-theme') ? 'dark' : 'light');
         }
         
-        // Переключение режима (компьютер/телефон)
         function toggleDevice() {
             const body = document.body;
             const deviceBtn = document.getElementById('deviceBtn');
@@ -1290,7 +1503,6 @@ void loop() {
             localStorage.setItem('device', body.classList.contains('phone-mode') ? 'phone' : 'computer');
         }
         
-        // Изменение размера шрифта
         function updateFontSize(size) {
             document.body.style.setProperty('--base-font-size', size + 'px');
             document.getElementById('fontSizeValue').textContent = size + 'px';
@@ -1304,7 +1516,6 @@ void loop() {
             updateFontSize(newSize);
         }
         
-        // Переключение вкладок
         function openTab(evt, tabName) {
             var i, tabContent, tabBtns;
             tabContent = document.getElementsByClassName("tab-content");
@@ -1319,7 +1530,6 @@ void loop() {
             evt.currentTarget.className += " active";
         }
         
-        // Загрузка сохраненных настроек
         const savedTheme = localStorage.getItem('theme');
         const savedDevice = localStorage.getItem('device');
         const savedFontSize = localStorage.getItem('fontSize');
