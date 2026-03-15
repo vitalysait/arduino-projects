@@ -33,10 +33,10 @@
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
             min-height: 100vh;
-            padding: 20px;
+            padding: clamp(10px, 2vw, 30px);
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             transition: all 0.3s;
-            --base-font-size: 18px;
+            --base-font-size: clamp(16px, 1.8vw, 22px);
             font-size: var(--base-font-size);
             position: relative;
         }
@@ -80,16 +80,16 @@
         
         .control-panel {
             position: fixed;
-            top: 20px;
-            right: 20px;
+            top: clamp(10px, 2vw, 30px);
+            right: clamp(10px, 2vw, 30px);
             z-index: 1000;
             display: flex;
-            gap: 10px;
+            gap: clamp(5px, 1vw, 15px);
             flex-wrap: wrap;
             background: rgba(255, 255, 255, 0.25);
             backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
-            padding: 12px 18px;
+            padding: clamp(8px, 1.5vw, 18px);
             border-radius: 60px;
             border: 1px solid rgba(255, 255, 255, 0.35);
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
@@ -101,11 +101,11 @@
             -webkit-backdrop-filter: blur(10px);
             border: 2px solid rgba(255, 255, 255, 0.4);
             color: white;
-            width: 45px;
-            height: 45px;
+            width: clamp(40px, 4vw, 60px);
+            height: clamp(40px, 4vw, 60px);
             border-radius: 50%;
             cursor: pointer;
-            font-size: 20px;
+            font-size: clamp(18px, 2vw, 28px);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -122,9 +122,9 @@
         
         .device-btn, .language-btn {
             width: auto;
-            padding: 0 20px;
+            padding: 0 clamp(15px, 2vw, 30px);
             border-radius: 30px;
-            font-size: 14px;
+            font-size: clamp(12px, 1.5vw, 18px);
             gap: 5px;
             background: rgba(255, 255, 255, 0.3);
         }
@@ -132,18 +132,18 @@
         .font-size-control {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: clamp(5px, 1vw, 15px);
             color: white;
-            padding: 0 10px;
+            padding: 0 clamp(5px, 1vw, 15px);
             background: rgba(255, 255, 255, 0.2);
             backdrop-filter: blur(8px);
             -webkit-backdrop-filter: blur(8px);
             border-radius: 40px;
-            padding: 5px 10px;
+            padding: clamp(3px, 0.8vw, 8px) clamp(8px, 1.5vw, 18px);
         }
         
         .font-size-slider {
-            width: 100px;
+            width: clamp(80px, 15vw, 150px);
             height: 5px;
             -webkit-appearance: none;
             background: rgba(255, 255, 255, 0.4);
@@ -153,8 +153,8 @@
         
         .font-size-slider::-webkit-slider-thumb {
             -webkit-appearance: none;
-            width: 18px;
-            height: 18px;
+            width: clamp(15px, 2vw, 22px);
+            height: clamp(15px, 2vw, 22px);
             background: white;
             border-radius: 50%;
             cursor: pointer;
@@ -167,11 +167,11 @@
             -webkit-backdrop-filter: blur(8px);
             border: none;
             color: white;
-            width: 30px;
-            height: 30px;
+            width: clamp(25px, 3vw, 35px);
+            height: clamp(25px, 3vw, 35px);
             border-radius: 50%;
             cursor: pointer;
-            font-size: 18px;
+            font-size: clamp(16px, 2vw, 22px);
             font-weight: bold;
             display: flex;
             align-items: center;
@@ -180,13 +180,13 @@
         }
         
         .container {
-            max-width: 1400px;  /* УВЕЛИЧИЛ ШИРИНУ */
-            width: 95%;
+            max-width: min(1800px, 95%);
+            width: 100%;
             margin: 0 auto;
             background: rgba(255, 255, 255, 0.7);
             backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
-            border-radius: 40px;
+            border-radius: clamp(20px, 4vw, 60px);
             box-shadow: 0 25px 60px rgba(0, 0, 0, 0.25);
             overflow: hidden;
             animation: slideIn 0.5s ease-out;
@@ -206,8 +206,8 @@
             -webkit-backdrop-filter: blur(12px);
             color: white;
             text-align: center;
-            padding: 18px;
-            font-size: 1.3em;
+            padding: clamp(15px, 2.5vw, 30px);
+            font-size: clamp(1.2em, 2.5vw, 2em);
             font-weight: bold;
             border-bottom: 1px solid rgba(255, 255, 255, 0.2);
         }
@@ -218,7 +218,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
+            gap: clamp(8px, 1.5vw, 20px);
             flex-wrap: wrap;
             text-shadow: 0 2px 5px rgba(0,0,0,0.2);
         }
@@ -228,15 +228,21 @@
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             color: white;
-            padding: 45px;
+            padding: clamp(30px, 6vw, 80px);
             text-align: center;
             border-bottom: 1px solid rgba(255, 255, 255, 0.2);
         }
         
         .header h1 {
-            font-size: 2.8em;
-            margin-bottom: 10px;
+            font-size: clamp(2.2em, 6vw, 4.5em);
+            margin-bottom: 0.5em;
             text-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            line-height: 1.2;
+        }
+        
+        .header p {
+            font-size: clamp(1.1em, 2.5vw, 2em);
+            opacity: 0.9;
         }
         
         .badge {
@@ -244,46 +250,46 @@
             backdrop-filter: blur(8px);
             -webkit-backdrop-filter: blur(8px);
             color: white;
-            padding: 8px 25px;
-            border-radius: 40px;
-            font-size: 1em;
+            padding: clamp(8px, 1.5vw, 20px) clamp(15px, 3vw, 40px);
+            border-radius: 60px;
+            font-size: clamp(0.9em, 1.8vw, 1.3em);
             display: inline-block;
-            margin-top: 15px;
+            margin-top: clamp(10px, 2vw, 25px);
             border: 1px solid rgba(255, 255, 255, 0.3);
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
         
         .content {
-            padding: 40px;
+            padding: clamp(20px, 4vw, 60px);
         }
         
         .tabs {
             display: flex;
-            gap: 10px;
-            margin-bottom: 30px;
+            gap: clamp(5px, 1.5vw, 20px);
+            margin-bottom: clamp(20px, 4vw, 50px);
             background: rgba(255, 255, 255, 0.25);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
-            padding: 12px;
-            border-radius: 60px;
+            padding: clamp(8px, 2vw, 20px);
+            border-radius: 100px;
             border: 1px solid rgba(255, 255, 255, 0.3);
             flex-wrap: wrap;
         }
         
         .tab-btn {
             flex: 1;
-            padding: 15px 25px;
+            padding: clamp(12px, 2vw, 25px) clamp(15px, 3vw, 40px);
             border: none;
             background: rgba(255, 255, 255, 0.25);
             backdrop-filter: blur(8px);
             -webkit-backdrop-filter: blur(8px);
-            border-radius: 50px;
-            font-size: 1.1em;
+            border-radius: 100px;
+            font-size: clamp(1em, 2vw, 1.8em);
             font-weight: bold;
             color: #333;
             cursor: pointer;
             transition: all 0.3s;
-            min-width: 150px;  /* УВЕЛИЧИЛ МИНИМАЛЬНУЮ ШИРИНУ */
+            min-width: 180px;
             border: 1px solid rgba(255, 255, 255, 0.2);
             white-space: nowrap;
         }
@@ -322,15 +328,15 @@
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             color: white;
-            padding: 30px;
-            border-radius: 30px;
-            margin-bottom: 30px;
+            padding: clamp(20px, 4vw, 50px);
+            border-radius: clamp(20px, 4vw, 50px);
+            margin-bottom: clamp(20px, 4vw, 50px);
             text-align: center;
-            font-size: 1.4em;
+            font-size: clamp(1.2em, 2.5vw, 2.2em);
             animation: pulse 2s infinite;
             border: 1px solid rgba(255, 255, 255, 0.3);
             box-shadow: 0 15px 35px rgba(0,0,0,0.2);
-            word-wrap: break-word;
+            line-height: 1.5;
         }
         
         @keyframes pulse {
@@ -343,19 +349,18 @@
             background: rgba(255, 255, 255, 0.6);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
-            padding: 35px;
-            border-radius: 30px;
-            margin-bottom: 30px;
+            padding: clamp(20px, 4vw, 50px);
+            border-radius: clamp(20px, 4vw, 50px);
+            margin-bottom: clamp(20px, 4vw, 50px);
             border-left: 8px solid rgba(102, 126, 234, 0.8);
             line-height: 2;
-            font-size: 1.2em;
+            font-size: clamp(1em, 2vw, 1.8em);
             border: 1px solid rgba(255, 255, 255, 0.3);
             box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-            word-wrap: break-word;
         }
         
         .story p {
-            margin-bottom: 20px;
+            margin-bottom: 1.5em;
         }
         
         .highlight {
@@ -363,34 +368,33 @@
             backdrop-filter: blur(8px);
             -webkit-backdrop-filter: blur(8px);
             color: white;
-            padding: 15px 35px;
-            border-radius: 60px;
+            padding: clamp(10px, 2vw, 30px) clamp(20px, 4vw, 60px);
+            border-radius: 100px;
             display: inline-block;
-            margin: 15px 0;
+            margin: 1em 0;
             font-weight: bold;
-            font-size: 1.3em;
+            font-size: clamp(1.1em, 2.2vw, 2em);
             border: 1px solid rgba(255, 255, 255, 0.3);
             box-shadow: 0 8px 25px rgba(0,0,0,0.15);
         }
         
         .components-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));  /* УВЕЛИЧИЛ МИНИМАЛЬНУЮ ШИРИНУ */
-            gap: 25px;
-            margin: 35px 0;
+            grid-template-columns: repeat(auto-fit, minmax(min(350px, 100%), 1fr));
+            gap: clamp(15px, 3vw, 40px);
+            margin: clamp(20px, 4vw, 50px) 0;
         }
         
         .component-card {
             background: rgba(255, 255, 255, 0.65);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
-            border-radius: 30px;
-            padding: 30px;
+            border-radius: clamp(20px, 4vw, 50px);
+            padding: clamp(20px, 4vw, 40px);
             box-shadow: 0 15px 35px rgba(0,0,0,0.15);
             border: 1px solid rgba(255, 255, 255, 0.3);
             transition: all 0.3s;
             text-align: center;
-            word-wrap: break-word;
         }
         
         .component-card:hover {
@@ -402,37 +406,35 @@
         
         .component-card h3 {
             color: #667eea;
-            font-size: 1.6em;
-            margin-bottom: 15px;
+            font-size: clamp(1.4em, 3vw, 2.2em);
+            margin-bottom: 0.5em;
             text-shadow: 0 2px 5px rgba(255,255,255,0.3);
-            word-wrap: break-word;
         }
         
         .component-card p {
-            margin-bottom: 15px;
-            font-size: 1em;
-            word-wrap: break-word;
+            margin-bottom: 1em;
+            font-size: clamp(1em, 2vw, 1.4em);
         }
         
         .component-icon {
-            font-size: 3em;
-            margin-bottom: 15px;
+            font-size: clamp(2.5em, 6vw, 5em);
+            margin-bottom: 0.3em;
         }
         
         .shop-buttons {
             display: flex;
-            gap: 10px;
+            gap: clamp(8px, 2vw, 20px);
             justify-content: center;
-            margin-top: 20px;
+            margin-top: 1.5em;
             flex-wrap: wrap;
         }
         
         .shop-btn {
-            padding: 10px 20px;
-            border-radius: 40px;
+            padding: clamp(8px, 1.5vw, 20px) clamp(15px, 3vw, 30px);
+            border-radius: 60px;
             text-decoration: none;
             font-weight: bold;
-            font-size: 0.95em;
+            font-size: clamp(0.9em, 1.8vw, 1.4em);
             color: white;
             transition: all 0.3s;
             background: rgba(0, 0, 0, 0.3);
@@ -456,28 +458,27 @@
             background: rgba(30, 30, 47, 0.7);
             backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
-            border-radius: 30px;
-            padding: 35px;
-            margin-bottom: 35px;
+            border-radius: clamp(20px, 4vw, 50px);
+            padding: clamp(20px, 4vw, 50px);
+            margin-bottom: clamp(20px, 4vw, 50px);
             box-shadow: 0 25px 45px rgba(0,0,0,0.3);
             border: 1px solid rgba(255, 255, 255, 0.2);
         }
         
         .code-section h2 {
             color: white;
-            margin-bottom: 20px;
-            font-size: 1.8em;
+            margin-bottom: 1em;
+            font-size: clamp(1.5em, 3.5vw, 2.8em);
             text-align: center;
             text-shadow: 0 4px 15px rgba(0,0,0,0.3);
-            word-wrap: break-word;
         }
         
         .code-block {
             background: rgba(45, 45, 58, 0.7);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 25px;
+            border-radius: clamp(15px, 3vw, 30px);
+            padding: clamp(15px, 3vw, 40px);
             overflow-x: auto;
             position: relative;
             border: 1px solid rgba(255, 255, 255, 0.15);
@@ -487,7 +488,7 @@
             margin: 0;
             color: #e6e6e6;
             font-family: 'Courier New', monospace;
-            font-size: 14px;
+            font-size: clamp(12px, 1.5vw, 18px);
             line-height: 1.6;
             white-space: pre-wrap;
             word-wrap: break-word;
@@ -497,39 +498,37 @@
             background: rgba(255, 255, 255, 0.6);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
-            padding: 35px;
-            border-radius: 30px;
-            margin: 30px 0;
+            padding: clamp(20px, 4vw, 50px);
+            border-radius: clamp(20px, 4vw, 50px);
+            margin: clamp(20px, 4vw, 50px) 0;
             border: 1px solid rgba(255, 255, 255, 0.3);
             box-shadow: 0 15px 35px rgba(0,0,0,0.1);
         }
         
         .connection-scheme h2 {
             color: #667eea;
-            margin-bottom: 20px;
-            font-size: 2em;
+            margin-bottom: 0.5em;
+            font-size: clamp(1.5em, 4vw, 3em);
             text-align: center;
-            word-wrap: break-word;
         }
         
         .scheme-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-            margin-top: 20px;
+            gap: clamp(10px, 2vw, 30px);
+            margin-top: 1.5em;
         }
         
         .scheme-item {
             background: rgba(255, 255, 255, 0.7);
             backdrop-filter: blur(8px);
             -webkit-backdrop-filter: blur(8px);
-            padding: 20px;
-            border-radius: 20px;
+            padding: clamp(15px, 3vw, 35px);
+            border-radius: clamp(15px, 3vw, 30px);
             text-align: center;
-            font-size: 1.2em;
+            font-size: clamp(1em, 2vw, 1.8em);
             border-left: 4px solid rgba(102, 126, 234, 0.8);
             border: 1px solid rgba(255, 255, 255, 0.3);
-            word-wrap: break-word;
         }
         
         .pin-red { color: #ff4444; font-weight: bold; }
@@ -545,50 +544,24 @@
             background: rgba(255, 255, 255, 0.6);
             backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
-            border-radius: 40px;
+            border-radius: clamp(20px, 4vw, 60px);
             margin: 30px 0;
             border: 3px dashed rgba(102, 126, 234, 0.6);
             animation: pulse 2s infinite;
         }
         
         .big-soon h1 {
-            font-size: 8em;
+            font-size: clamp(3em, 15vw, 12em);
             color: #667eea;
             text-shadow: 5px 5px 0 rgba(102, 126, 234, 0.3);
             letter-spacing: 10px;
-        }
-        
-        @media (max-width: 768px) {
-            .container {
-                width: 100%;
-                padding: 0;
-            }
-            
-            .big-soon h1 { 
-                font-size: 4em; 
-            }
-            
-            .scheme-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .tab-btn {
-                min-width: 100%;
-                white-space: normal;
-            }
-            
-            .shop-btn {
-                white-space: normal;
-                font-size: 0.85em;
-                padding: 8px 12px;
-            }
         }
         
         .footer {
             background: rgba(248, 249, 250, 0.6);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
-            padding: 35px;
+            padding: clamp(20px, 4vw, 50px);
             text-align: center;
             border-top: 1px solid rgba(102, 126, 234, 0.4);
             border-top: 1px solid rgba(255, 255, 255, 0.2);
@@ -597,7 +570,39 @@
         .footer .username {
             color: #667eea;
             font-weight: bold;
-            font-size: 1.3em;
+            font-size: clamp(1.2em, 3vw, 2.2em);
+        }
+        
+        /* Адаптация для телефонов */
+        @media (max-width: 768px) {
+            .tab-btn {
+                white-space: normal;
+                min-width: 100%;
+                font-size: 1.2em;
+            }
+            
+            .scheme-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .shop-btn {
+                white-space: normal;
+            }
+            
+            .control-panel {
+                width: 95%;
+                right: 2.5%;
+                justify-content: center;
+            }
+            
+            .big-soon {
+                min-height: 300px;
+            }
+            
+            .big-soon h1 {
+                font-size: 4em;
+                letter-spacing: 5px;
+            }
         }
     </style>
 </head>
@@ -908,7 +913,7 @@ void loop() {
                 </div>
             </div>
             
-            <!-- Вкладка 2 - RGB светодиод с твоими компонентами -->
+            <!-- Вкладка 2 - RGB светодиод -->
             <div id="tab2" class="tab-content">
                 <div class="greeting" id="greeting2">🌈 RGB светодиод + ESP8266 D1 Mini V2</div>
                 
@@ -922,11 +927,9 @@ void loop() {
                     </div>
                 </div>
                 
-                <!-- Компоненты для RGB с твоими названиями -->
                 <h2 style="color: #667eea; margin: 30px 0 20px; text-align: center;" id="componentsTitle2">⚡ КОМПОНЕНТЫ ДЛЯ ПРОЕКТА ⚡</h2>
                 
                 <div class="components-grid">
-                    <!-- ESP8266 D1 Mini V2 -->
                     <div class="component-card">
                         <div class="component-icon">🔹</div>
                         <h3>ESP8266 D1 Mini V2</h3>
@@ -938,7 +941,6 @@ void loop() {
                         </div>
                     </div>
                     
-                    <!-- RGB модуль KY-016 (HW-479) -->
                     <div class="component-card">
                         <div class="component-icon">🌈</div>
                         <h3>RGB модуль KY-016 (HW-479)</h3>
@@ -950,7 +952,6 @@ void loop() {
                         </div>
                     </div>
                     
-                    <!-- Резисторы 220 Ом -->
                     <div class="component-card">
                         <div class="component-icon">⚡</div>
                         <h3>Резисторы 220 Ом</h3>
@@ -962,11 +963,10 @@ void loop() {
                         </div>
                     </div>
                     
-                    <!-- Коробка распределительная -->
                     <div class="component-card">
                         <div class="component-icon">📦</div>
                         <h3>Коробка распределительная</h3>
-                        <p>65x65x50 мм, IP54, распаячная, кабель-канал</p>
+                        <p>65x65x50 мм, IP54, распаячная</p>
                         <div class="shop-buttons">
                             <a href="https://www.wildberries.ru/catalog/0/search.aspx?search=коробка+распределительная+65x65" target="_blank" class="shop-btn wb">Wildberries</a>
                             <a href="https://www.ozon.ru/search/?text=коробка+распределительная+65x65" target="_blank" class="shop-btn ozon">Ozon</a>
@@ -974,11 +974,10 @@ void loop() {
                         </div>
                     </div>
                     
-                    <!-- Провода -->
                     <div class="component-card">
                         <div class="component-icon">🔌</div>
                         <h3>Соединительные провода</h3>
-                        <p>Папа-мама, мама-мама для подключения</p>
+                        <p>Папа-мама, мама-мама</p>
                         <div class="shop-buttons">
                             <a href="https://www.wildberries.ru/catalog/0/search.aspx?search=провода+для+arduino" target="_blank" class="shop-btn wb">Wildberries</a>
                             <a href="https://www.ozon.ru/search/?text=провода+для+arduino" target="_blank" class="shop-btn ozon">Ozon</a>
@@ -1007,9 +1006,9 @@ const char* password = "твой_пароль";
 ESP8266WebServer server(80);
 
 // Пины для RGB модуля KY-016 (HW-479)
-const int redPin = D1;    // GPIO5
-const int greenPin = D2;   // GPIO4  
-const int bluePin = D3;    // GPIO0
+const int redPin = D1;
+const int greenPin = D2;
+const int bluePin = D3;
 
 void setup() {
   Serial.begin(115200);
@@ -1030,16 +1029,12 @@ void setup() {
   analogWrite(bluePin, 0);
   
   WiFi.begin(ssid, password);
-  Serial.print("Подключение к WiFi");
-  
   while (WiFi.status() != WL_CONNECTED) {
     delay(500);
     Serial.print(".");
   }
   
-  Serial.println("\nWiFi OK!");
-  Serial.print("IP адрес: ");
-  Serial.println(WiFi.localIP());
+  Serial.println("\nWiFi OK! IP: " + WiFi.localIP().toString());
   
   server.on("/", []() {
     String page = R"rawliteral(
@@ -1057,10 +1052,7 @@ void setup() {
         .slider-group { margin: 20px 0; }
         .slider-group label { display: block; margin-bottom: 5px; font-weight: bold; }
         input[type=range] { width: 100%; height: 10px; border-radius: 5px; }
-        .red input { background: linear-gradient(90deg, #000, #ff0000); }
-        .green input { background: linear-gradient(90deg, #000, #00ff00); }
-        .blue input { background: linear-gradient(90deg, #000, #0000ff); }
-        .color-btn { padding: 10px 15px; margin: 3px; border: none; border-radius: 10px; color: white; font-weight: bold; cursor: pointer; font-size: 0.9em; }
+        .color-btn { padding: 10px 15px; margin: 3px; border: none; border-radius: 10px; color: white; font-weight: bold; cursor: pointer; }
         .off-btn { background: #ff4757; color: white; padding: 15px 30px; border: none; border-radius: 30px; font-size: 1.2em; cursor: pointer; width: 100%; }
         .ip { margin-top: 20px; padding: 10px; background: #f0f0f0; border-radius: 10px; }
     </style>
@@ -1070,17 +1062,17 @@ void setup() {
         <h1>🌈 RGB УПРАВЛЕНИЕ</h1>
         <div class="preview" id="preview" style="background: rgb(255,0,0);"></div>
         
-        <div class="slider-group red">
+        <div class="slider-group">
             <label>Красный <span id="redVal">255</span></label>
             <input type="range" id="red" min="0" max="255" value="255" oninput="updateColor()">
         </div>
         
-        <div class="slider-group green">
+        <div class="slider-group">
             <label>Зеленый <span id="greenVal">0</span></label>
             <input type="range" id="green" min="0" max="255" value="0" oninput="updateColor()">
         </div>
         
-        <div class="slider-group blue">
+        <div class="slider-group">
             <label>Синий <span id="blueVal">0</span></label>
             <input type="range" id="blue" min="0" max="255" value="0" oninput="updateColor()">
         </div>
@@ -1092,11 +1084,9 @@ void setup() {
             <button class="color-btn" style="background:#ffff00" onclick="setColor(255,255,0)">Желтый</button>
             <button class="color-btn" style="background:#ff00ff" onclick="setColor(255,0,255)">Фиолетовый</button>
             <button class="color-btn" style="background:#00ffff" onclick="setColor(0,255,255)">Голубой</button>
-            <button class="color-btn" style="background:#ffffff" onclick="setColor(255,255,255)">Белый</button>
         </div>
         
         <button class="off-btn" onclick="setColor(0,0,0)">⚫ ВЫКЛЮЧИТЬ</button>
-        
         <div class="ip" id="ip"></div>
     </div>
     
@@ -1109,9 +1099,7 @@ void setup() {
             document.getElementById('redVal').innerHTML = r;
             document.getElementById('greenVal').innerHTML = g;
             document.getElementById('blueVal').innerHTML = b;
-            
             document.getElementById('preview').style.background = 'rgb(' + r + ',' + g + ',' + b + ')';
-            
             fetch('/set?r=' + (r*4) + '&g=' + (g*4) + '&b=' + (b*4));
         }
         
@@ -1132,19 +1120,14 @@ void setup() {
 
   server.on("/set", []() {
     if(server.hasArg("r") && server.hasArg("g") && server.hasArg("b")) {
-      int r = server.arg("r").toInt();
-      int g = server.arg("g").toInt();
-      int b = server.arg("b").toInt();
-      
-      analogWrite(redPin, r);
-      analogWrite(greenPin, g);
-      analogWrite(bluePin, b);
+      analogWrite(redPin, server.arg("r").toInt());
+      analogWrite(greenPin, server.arg("g").toInt());
+      analogWrite(bluePin, server.arg("b").toInt());
     }
     server.send(200, "text/plain", "OK");
   });
 
   server.begin();
-  Serial.println("HTTP server started");
 }
 
 void loop() {
@@ -1226,12 +1209,12 @@ void loop() {
                 pin3: 'DATA → D2 (GPIO4)',
                 pin4: 'Резистор 10кОм',
                 componentsTitle: '⚡ КОМПОНЕНТЫ МЕТЕОСТАНЦИИ ⚡',
-                comp1: 'ESP8266',
+                comp1: 'ESP8266 D1 Mini V2',
                 comp2: 'Датчик DHT22',
                 comp3: 'Резисторы 10кОм',
                 comp4: 'Повербанк',
                 codeTitle1: '📟 ПОЛНЫЙ КОД МЕТЕОСТАНЦИИ',
-                greeting2: '🌈 RGB светодиод + ESP8266',
+                greeting2: '🌈 RGB светодиод + ESP8266 D1 Mini V2',
                 schemeTitle2: '🔌 СХЕМА ПОДКЛЮЧЕНИЯ RGB',
                 rgbPin1: 'GND → GND',
                 rgbPin2: 'R → D1 + 220 Ом',
@@ -1269,12 +1252,12 @@ void loop() {
                 pin3: 'DATA → D2 (GPIO4)',
                 pin4: '10kΩ Resistor',
                 componentsTitle: '⚡ WEATHER STATION COMPONENTS ⚡',
-                comp1: 'ESP8266',
+                comp1: 'ESP8266 D1 Mini V2',
                 comp2: 'DHT22 Sensor',
                 comp3: '10kΩ Resistors',
                 comp4: 'Power Bank',
                 codeTitle1: '📟 FULL WEATHER STATION CODE',
-                greeting2: '🌈 RGB LED + ESP8266',
+                greeting2: '🌈 RGB LED + ESP8266 D1 Mini V2',
                 schemeTitle2: '🔌 RGB CONNECTION DIAGRAM',
                 rgbPin1: 'GND → GND',
                 rgbPin2: 'R → D1 + 220Ω',
