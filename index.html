@@ -6,7 +6,6 @@
     <title>Мои Arduino проекты</title>
     
     <!-- Яндекс.Метрика -->
-    <!-- Yandex.Metrika counter -->
     <script type="text/javascript" >
         (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
         m[i].l=1*new Date();
@@ -22,7 +21,6 @@
         });
     </script>
     <noscript><div><img src="https://mc.yandex.ru/watch/107081093" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-    <!-- /Yandex.Metrika counter -->
     
     <style>
         * {
@@ -43,7 +41,6 @@
             position: relative;
         }
         
-        /* Фон с шумом для эффекта стекла */
         body::before {
             content: "";
             position: fixed;
@@ -405,6 +402,16 @@
             text-shadow: 0 2px 5px rgba(255,255,255,0.3);
         }
         
+        .component-card p {
+            margin-bottom: 15px;
+            font-size: 1em;
+        }
+        
+        .component-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+        
         .shop-buttons {
             display: flex;
             gap: 10px;
@@ -467,6 +474,15 @@
             border: 1px solid rgba(255, 255, 255, 0.15);
         }
         
+        pre {
+            margin: 0;
+            color: #e6e6e6;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            line-height: 1.6;
+            white-space: pre-wrap;
+        }
+        
         .connection-scheme {
             background: rgba(255, 255, 255, 0.6);
             backdrop-filter: blur(12px);
@@ -476,6 +492,13 @@
             margin: 30px 0;
             border: 1px solid rgba(255, 255, 255, 0.3);
             box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+        
+        .connection-scheme h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+            font-size: 2em;
+            text-align: center;
         }
         
         .scheme-grid {
@@ -496,6 +519,11 @@
             border-left: 4px solid rgba(102, 126, 234, 0.8);
             border: 1px solid rgba(255, 255, 255, 0.3);
         }
+        
+        .pin-red { color: #ff4444; font-weight: bold; }
+        .pin-green { color: #44ff44; font-weight: bold; }
+        .pin-blue { color: #4444ff; font-weight: bold; }
+        .pin-gnd { color: #666; font-weight: bold; }
         
         .big-soon {
             display: flex;
@@ -575,21 +603,15 @@
             
             <!-- Вкладка 1 - Метеостанция -->
             <div id="tab1" class="tab-content active">
-                <div class="greeting" id="greeting1">
-                    👋 ВСЕМ ПРИВЕТ!
-                </div>
+                <div class="greeting" id="greeting1">👋 ВСЕМ ПРИВЕТ!</div>
                 
                 <div class="story" id="story1">
                     <p>🔥 Как и обещал, расскажу про проект метеостанция. Взял ESP8266, потом DHT22. Решил сначала сделать сайт - сделал, мне не понравилось. Потом создал бота в Telegram, делал его 2 дня.</p>
-                    
                     <p>🤖 Бот показывает температуру и влажность. Сделал его приватным. Прошил ESP, подключил к повербанку, взял коробку, вырезал отверстия, просунул датчик - и понеслась!</p>
-                    
                     <div style="text-align: center;">
                         <span class="highlight" id="highlight1">✨ СТАЛ ДОБАВЛЯТЬ В БОТА ПРИКОЛЫ ✨</span>
                     </div>
-                    
                     <p id="story2">📱 Создавал его через @BotFather, написал код в Arduino IDE. Код будет ниже. Настолько понравился проект, что решил заказать печать у @Bolodechka. Пока что думаю...</p>
-                    
                     <p style="text-align: right; font-style: italic; margin-top: 30px;" id="signature">АРДУИНО ПРОЕКТЫ И ПАЯЛЬНИКИ, 25.02.2026 21:34</p>
                 </div>
                 
@@ -608,17 +630,19 @@
                 <div class="components-grid">
                     <div class="component-card">
                         <div class="component-icon">🔹</div>
-                        <h3 id="comp1">ESP8266</h3>
+                        <h3 id="comp1">ESP8266 D1 Mini V2</h3>
+                        <p>NodeMcu Lua ESP-12 (CH340) Type-C</p>
                         <div class="shop-buttons">
-                            <a href="https://www.wildberries.ru/catalog/0/search.aspx?search=esp8266" target="_blank" class="shop-btn wb">Wildberries</a>
-                            <a href="https://www.ozon.ru/search/?text=esp8266" target="_blank" class="shop-btn ozon">Ozon</a>
-                            <a href="https://aliexpress.ru/wholesale?SearchText=esp8266" target="_blank" class="shop-btn aliexpress">AliExpress</a>
+                            <a href="https://www.wildberries.ru/catalog/0/search.aspx?search=esp8266+d1+mini+v2" target="_blank" class="shop-btn wb">Wildberries</a>
+                            <a href="https://www.ozon.ru/search/?text=esp8266+d1+mini+v2" target="_blank" class="shop-btn ozon">Ozon</a>
+                            <a href="https://aliexpress.ru/wholesale?SearchText=esp8266+d1+mini+v2" target="_blank" class="shop-btn aliexpress">AliExpress</a>
                         </div>
                     </div>
                     
                     <div class="component-card">
                         <div class="component-icon">🌡️</div>
                         <h3 id="comp2">Датчик DHT22</h3>
+                        <p>Температура и влажность</p>
                         <div class="shop-buttons">
                             <a href="https://www.wildberries.ru/catalog/0/search.aspx?search=dht22" target="_blank" class="shop-btn wb">Wildberries</a>
                             <a href="https://www.ozon.ru/search/?text=dht22" target="_blank" class="shop-btn ozon">Ozon</a>
@@ -629,6 +653,7 @@
                     <div class="component-card">
                         <div class="component-icon">⚡</div>
                         <h3 id="comp3">Резисторы 10кОм</h3>
+                        <p>Для подтяжки данных</p>
                         <div class="shop-buttons">
                             <a href="https://www.wildberries.ru/catalog/0/search.aspx?search=резисторы+10кОм" target="_blank" class="shop-btn wb">Wildberries</a>
                             <a href="https://www.ozon.ru/search/?text=резисторы+10кОм" target="_blank" class="shop-btn ozon">Ozon</a>
@@ -639,6 +664,7 @@
                     <div class="component-card">
                         <div class="component-icon">🔋</div>
                         <h3 id="comp4">Повербанк</h3>
+                        <p>Для автономного питания</p>
                         <div class="shop-buttons">
                             <a href="https://www.wildberries.ru/catalog/0/search.aspx?search=повербанк" target="_blank" class="shop-btn wb">Wildberries</a>
                             <a href="https://www.ozon.ru/search/?text=повербанк" target="_blank" class="shop-btn ozon">Ozon</a>
@@ -665,7 +691,7 @@ const char* password = "пароль от него";
 const String allowedUsers[] = {
   "1234567890",//ID
   "123456789",
-  "1234567890"  // Добавлен новый пользователь
+  "1234567890"
 };
 const int totalUsers = 3;
 // =================================
@@ -848,34 +874,108 @@ void loop() {
                 </div>
             </div>
             
-            <!-- Вкладка 2 - RGB светодиод -->
+            <!-- Вкладка 2 - RGB светодиод с твоими компонентами -->
             <div id="tab2" class="tab-content">
-                <div class="greeting" id="greeting2">🌈 RGB светодиод + ESP8266</div>
+                <div class="greeting" id="greeting2">🌈 RGB светодиод + ESP8266 D1 Mini V2</div>
                 
                 <div class="connection-scheme">
                     <h2 id="schemeTitle2">🔌 СХЕМА ПОДКЛЮЧЕНИЯ RGB</h2>
                     <div class="scheme-grid">
                         <div class="scheme-item"><span>⚫</span><strong class="pin-gnd"><span id="rgbPin1">GND → GND</span></strong></div>
-                        <div class="scheme-item"><span>🔴</span><strong class="pin-red"><span id="rgbPin2">R → D1 + 220 Ом</span></strong></div>
-                        <div class="scheme-item"><span>🟢</span><strong class="pin-green"><span id="rgbPin3">G → D2 + 220 Ом</span></strong></div>
-                        <div class="scheme-item"><span>🔵</span><strong class="pin-blue"><span id="rgbPin4">B → D3 + 220 Ом</span></strong></div>
+                        <div class="scheme-item"><span>🔴</span><strong class="pin-red"><span id="rgbPin2">R → D1 (GPIO5) + 220 Ом</span></strong></div>
+                        <div class="scheme-item"><span>🟢</span><strong class="pin-green"><span id="rgbPin3">G → D2 (GPIO4) + 220 Ом</span></strong></div>
+                        <div class="scheme-item"><span>🔵</span><strong class="pin-blue"><span id="rgbPin4">B → D3 (GPIO0) + 220 Ом</span></strong></div>
+                    </div>
+                </div>
+                
+                <!-- Компоненты для RGB с твоими названиями -->
+                <h2 style="color: #667eea; margin: 30px 0 20px; text-align: center;" id="componentsTitle2">⚡ КОМПОНЕНТЫ ДЛЯ ПРОЕКТА ⚡</h2>
+                
+                <div class="components-grid">
+                    <!-- ESP8266 D1 Mini V2 -->
+                    <div class="component-card">
+                        <div class="component-icon">🔹</div>
+                        <h3>ESP8266 D1 Mini V2</h3>
+                        <p>NodeMcu Lua ESP-12 (CH340) Type-C</p>
+                        <div class="shop-buttons">
+                            <a href="https://www.wildberries.ru/catalog/0/search.aspx?search=esp8266+d1+mini+v2" target="_blank" class="shop-btn wb">Wildberries</a>
+                            <a href="https://www.ozon.ru/search/?text=esp8266+d1+mini+v2" target="_blank" class="shop-btn ozon">Ozon</a>
+                            <a href="https://aliexpress.ru/wholesale?SearchText=esp8266+d1+mini+v2" target="_blank" class="shop-btn aliexpress">AliExpress</a>
+                        </div>
+                    </div>
+                    
+                    <!-- RGB модуль KY-016 (HW-479) -->
+                    <div class="component-card">
+                        <div class="component-icon">🌈</div>
+                        <h3>RGB модуль KY-016 (HW-479)</h3>
+                        <p>Светодиодный модуль для Arduino</p>
+                        <div class="shop-buttons">
+                            <a href="https://www.wildberries.ru/catalog/0/search.aspx?search=ky-016+arduino" target="_blank" class="shop-btn wb">Wildberries</a>
+                            <a href="https://www.ozon.ru/search/?text=ky-016+arduino" target="_blank" class="shop-btn ozon">Ozon</a>
+                            <a href="https://aliexpress.ru/wholesale?SearchText=ky-016" target="_blank" class="shop-btn aliexpress">AliExpress</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Резисторы 220 Ом -->
+                    <div class="component-card">
+                        <div class="component-icon">⚡</div>
+                        <h3>Резисторы 220 Ом</h3>
+                        <p>3 штуки для каждого канала</p>
+                        <div class="shop-buttons">
+                            <a href="https://www.wildberries.ru/catalog/0/search.aspx?search=резисторы+220+ом" target="_blank" class="shop-btn wb">Wildberries</a>
+                            <a href="https://www.ozon.ru/search/?text=резисторы+220+ом" target="_blank" class="shop-btn ozon">Ozon</a>
+                            <a href="https://aliexpress.ru/wholesale?SearchText=220+ohm+resistor" target="_blank" class="shop-btn aliexpress">AliExpress</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Коробка распределительная -->
+                    <div class="component-card">
+                        <div class="component-icon">📦</div>
+                        <h3>Коробка распределительная</h3>
+                        <p>65x65x50 мм, IP54, распаячная, кабель-канал</p>
+                        <div class="shop-buttons">
+                            <a href="https://www.wildberries.ru/catalog/0/search.aspx?search=коробка+распределительная+65x65" target="_blank" class="shop-btn wb">Wildberries</a>
+                            <a href="https://www.ozon.ru/search/?text=коробка+распределительная+65x65" target="_blank" class="shop-btn ozon">Ozon</a>
+                            <a href="https://aliexpress.ru/wholesale?SearchText=junction+box+65x65" target="_blank" class="shop-btn aliexpress">AliExpress</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Провода -->
+                    <div class="component-card">
+                        <div class="component-icon">🔌</div>
+                        <h3>Соединительные провода</h3>
+                        <p>Папа-мама, мама-мама для подключения</p>
+                        <div class="shop-buttons">
+                            <a href="https://www.wildberries.ru/catalog/0/search.aspx?search=провода+для+arduino" target="_blank" class="shop-btn wb">Wildberries</a>
+                            <a href="https://www.ozon.ru/search/?text=провода+для+arduino" target="_blank" class="shop-btn ozon">Ozon</a>
+                            <a href="https://aliexpress.ru/wholesale?SearchText=dupont+cable" target="_blank" class="shop-btn aliexpress">AliExpress</a>
+                        </div>
                     </div>
                 </div>
                 
                 <div class="code-section">
-                    <h2 id="codeTitle2">📟 КОД ДЛЯ RGB</h2>
+                    <h2 id="codeTitle2">📟 КОД ДЛЯ RGB (ESP8266 D1 Mini V2 + KY-016)</h2>
                     <div class="code-block">
                         <pre>
 #include &lt;ESP8266WiFi.h&gt;
+#include &lt;ESP8266WebServer.h&gt;
 
+// Пины для ESP8266 D1 Mini V2
+#define D1 5   // GPIO5 - Красный
+#define D2 4   // GPIO4 - Зеленый
+#define D3 0   // GPIO0 - Синий
+
+// ========== ТВОИ ДАННЫЕ ==========
 const char* ssid = "твой_WiFi";
 const char* password = "твой_пароль";
+// =================================
 
-const int redPin = D1;
-const int greenPin = D2;
-const int bluePin = D3;
+ESP8266WebServer server(80);
 
-WiFiServer server(80);
+// Пины для RGB модуля KY-016 (HW-479)
+const int redPin = D1;    // GPIO5
+const int greenPin = D2;   // GPIO4  
+const int bluePin = D3;    // GPIO0
 
 void setup() {
   Serial.begin(115200);
@@ -884,60 +984,137 @@ void setup() {
   pinMode(greenPin, OUTPUT);
   pinMode(bluePin, OUTPUT);
   
-  digitalWrite(redPin, LOW);
-  digitalWrite(greenPin, LOW);
-  digitalWrite(bluePin, LOW);
+  // Тест светодиода
+  analogWrite(redPin, 1023);
+  delay(500);
+  analogWrite(redPin, 0);
+  analogWrite(greenPin, 1023);
+  delay(500);
+  analogWrite(greenPin, 0);
+  analogWrite(bluePin, 1023);
+  delay(500);
+  analogWrite(bluePin, 0);
   
   WiFi.begin(ssid, password);
+  Serial.print("Подключение к WiFi");
+  
   while (WiFi.status() != WL_CONNECTED) {
     delay(500);
     Serial.print(".");
   }
   
-  Serial.println("\nIP адрес: " + WiFi.localIP().toString());
+  Serial.println("\nWiFi OK!");
+  Serial.print("IP адрес: ");
+  Serial.println(WiFi.localIP());
+  
+  server.on("/", []() {
+    String page = R"rawliteral(
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>RGB управление</title>
+    <style>
+        body { font-family: Arial; text-align: center; background: linear-gradient(135deg, #667eea, #764ba2); padding: 20px; }
+        .container { max-width: 400px; margin: 0 auto; background: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+        h1 { color: #333; }
+        .preview { width: 100px; height: 100px; border-radius: 50%; margin: 20px auto; border: 3px solid white; box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
+        .slider-group { margin: 20px 0; }
+        .slider-group label { display: block; margin-bottom: 5px; font-weight: bold; }
+        input[type=range] { width: 100%; height: 10px; border-radius: 5px; }
+        .red input { background: linear-gradient(90deg, #000, #ff0000); }
+        .green input { background: linear-gradient(90deg, #000, #00ff00); }
+        .blue input { background: linear-gradient(90deg, #000, #0000ff); }
+        .color-btn { padding: 10px 20px; margin: 5px; border: none; border-radius: 10px; color: white; font-weight: bold; cursor: pointer; }
+        .off-btn { background: #ff4757; color: white; padding: 15px 30px; border: none; border-radius: 30px; font-size: 1.2em; cursor: pointer; width: 100%; }
+        .ip { margin-top: 20px; padding: 10px; background: #f0f0f0; border-radius: 10px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🌈 RGB УПРАВЛЕНИЕ</h1>
+        <div class="preview" id="preview" style="background: rgb(255,0,0);"></div>
+        
+        <div class="slider-group red">
+            <label>Красный <span id="redVal">255</span></label>
+            <input type="range" id="red" min="0" max="255" value="255" oninput="updateColor()">
+        </div>
+        
+        <div class="slider-group green">
+            <label>Зеленый <span id="greenVal">0</span></label>
+            <input type="range" id="green" min="0" max="255" value="0" oninput="updateColor()">
+        </div>
+        
+        <div class="slider-group blue">
+            <label>Синий <span id="blueVal">0</span></label>
+            <input type="range" id="blue" min="0" max="255" value="0" oninput="updateColor()">
+        </div>
+        
+        <div style="margin: 20px 0">
+            <button class="color-btn" style="background:#ff0000" onclick="setColor(255,0,0)">Красный</button>
+            <button class="color-btn" style="background:#00ff00" onclick="setColor(0,255,0)">Зеленый</button>
+            <button class="color-btn" style="background:#0000ff" onclick="setColor(0,0,255)">Синий</button>
+            <button class="color-btn" style="background:#ffff00" onclick="setColor(255,255,0)">Желтый</button>
+            <button class="color-btn" style="background:#ff00ff" onclick="setColor(255,0,255)">Фиолетовый</button>
+            <button class="color-btn" style="background:#00ffff" onclick="setColor(0,255,255)">Голубой</button>
+            <button class="color-btn" style="background:#ffffff" onclick="setColor(255,255,255)">Белый</button>
+        </div>
+        
+        <button class="off-btn" onclick="setColor(0,0,0)">⚫ ВЫКЛЮЧИТЬ</button>
+        
+        <div class="ip" id="ip"></div>
+    </div>
+    
+    <script>
+        function updateColor() {
+            let r = document.getElementById('red').value;
+            let g = document.getElementById('green').value;
+            let b = document.getElementById('blue').value;
+            
+            document.getElementById('redVal').innerHTML = r;
+            document.getElementById('greenVal').innerHTML = g;
+            document.getElementById('blueVal').innerHTML = b;
+            
+            document.getElementById('preview').style.background = 'rgb(' + r + ',' + g + ',' + b + ')';
+            
+            fetch('/set?r=' + (r*4) + '&g=' + (g*4) + '&b=' + (b*4));
+        }
+        
+        function setColor(r, g, b) {
+            document.getElementById('red').value = r;
+            document.getElementById('green').value = g;
+            document.getElementById('blue').value = b;
+            updateColor();
+        }
+        
+        document.getElementById('ip').innerHTML = 'IP: ' + window.location.hostname;
+    </script>
+</body>
+</html>
+)rawliteral";
+    server.send(200, "text/html", page);
+  });
+
+  server.on("/set", []() {
+    if(server.hasArg("r") && server.hasArg("g") && server.hasArg("b")) {
+      int r = server.arg("r").toInt();
+      int g = server.arg("g").toInt();
+      int b = server.arg("b").toInt();
+      
+      analogWrite(redPin, r);
+      analogWrite(greenPin, g);
+      analogWrite(bluePin, b);
+    }
+    server.send(200, "text/plain", "OK");
+  });
+
   server.begin();
+  Serial.println("HTTP server started");
 }
 
 void loop() {
-  WiFiClient client = server.available();
-  if (!client) return;
-  
-  while(!client.available()) delay(1);
-  
-  String request = client.readStringUntil('\r');
-  client.flush();
-  
-  if (request.indexOf("/red=on") != -1) digitalWrite(redPin, HIGH);
-  if (request.indexOf("/red=off") != -1) digitalWrite(redPin, LOW);
-  if (request.indexOf("/green=on") != -1) digitalWrite(greenPin, HIGH);
-  if (request.indexOf("/green=off") != -1) digitalWrite(greenPin, LOW);
-  if (request.indexOf("/blue=on") != -1) digitalWrite(bluePin, HIGH);
-  if (request.indexOf("/blue=off") != -1) digitalWrite(bluePin, LOW);
-  
-  client.println("HTTP/1.1 200 OK");
-  client.println("Content-Type: text/html");
-  client.println("Connection: close");
-  client.println();
-  
-  client.println("<!DOCTYPE HTML>");
-  client.println("<html>");
-  client.println("<head><meta charset='UTF-8'></head>");
-  client.println("<body style='text-align:center;font-family:Arial;'>");
-  client.println("<h1>🌈 RGB УПРАВЛЕНИЕ</h1>");
-  
-  client.println("<h2>КРАСНЫЙ</h2>");
-  client.println("<a href='/red=on'><button>ВКЛ</button></a>");
-  client.println("<a href='/red=off'><button>ВЫКЛ</button></a>");
-  
-  client.println("<h2>ЗЕЛЕНЫЙ</h2>");
-  client.println("<a href='/green=on'><button>ВКЛ</button></a>");
-  client.println("<a href='/green=off'><button>ВЫКЛ</button></a>");
-  
-  client.println("<h2>СИНИЙ</h2>");
-  client.println("<a href='/blue=on'><button>ВКЛ</button></a>");
-  client.println("<a href='/blue=off'><button>ВЫКЛ</button></a>");
-  
-  client.println("</body></html>");
+  server.handleClient();
 }
                         </pre>
                     </div>
@@ -1101,7 +1278,6 @@ void loop() {
             document.getElementById('tab4Text').textContent = t.tab4;
             document.getElementById('greeting1').textContent = t.greeting1;
             
-            // Обновляем story
             const storyElem = document.getElementById('story1');
             storyElem.innerHTML = '';
             
@@ -1194,26 +1370,19 @@ void loop() {
             updateFontSize(size);
         }
         
-        // ИСПРАВЛЕННАЯ ФУНКЦИЯ ДЛЯ ВКЛАДОК
         function openTab(tabId) {
-            // Скрываем все вкладки
             document.querySelectorAll('.tab-content').forEach(tab => {
                 tab.classList.remove('active');
             });
             
-            // Убираем активный класс со всех кнопок
             document.querySelectorAll('.tab-btn').forEach(btn => {
                 btn.classList.remove('active');
             });
             
-            // Показываем выбранную вкладку
             document.getElementById(tabId).classList.add('active');
-            
-            // Добавляем активный класс нажатой кнопке
             event.target.classList.add('active');
         }
         
-        // Загрузка сохраненных настроек
         const savedTheme = localStorage.getItem('theme');
         const savedDevice = localStorage.getItem('device');
         const savedFontSize = localStorage.getItem('fontSize');
