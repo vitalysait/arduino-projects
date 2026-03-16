@@ -33,7 +33,7 @@
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
             min-height: 100vh;
-            padding: 20px;
+            padding: 0;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             transition: all 0.3s;
             --base-font-size: 18px;
@@ -180,13 +180,12 @@
         }
         
         .container {
-            max-width: 1200px;
             width: 100%;
             margin: 0 auto;
             background: rgba(255, 255, 255, 0.7);
             backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
-            border-radius: 40px;
+            border-radius: 0;
             box-shadow: 0 25px 60px rgba(0, 0, 0, 0.25);
             overflow: hidden;
             animation: slideIn 0.5s ease-out;
@@ -212,15 +211,32 @@
             border-bottom: 1px solid rgba(255, 255, 255, 0.2);
         }
         
+        .tg-top-banner .banner-links {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+        
         .tg-top-banner a {
             color: white;
             text-decoration: none;
             display: flex;
             align-items: center;
-            justify-content: center;
-            gap: 10px;
-            flex-wrap: wrap;
-            text-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            gap: 8px;
+            transition: opacity 0.2s;
+        }
+        
+        .tg-top-banner a:hover {
+            opacity: 0.9;
+            text-decoration: underline;
+        }
+        
+        .tg-top-banner .separator {
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 1.5em;
+            line-height: 1;
         }
         
         .header {
@@ -373,7 +389,7 @@
         
         .components-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 25px;
             margin: 35px 0;
         }
@@ -568,16 +584,7 @@
         
         /* Адаптация для телефонов */
         @media (max-width: 768px) {
-            body {
-                padding: 10px;
-            }
-            
-            .container {
-                border-radius: 20px;
-            }
-            
             .control-panel {
-                width: auto;
                 right: 10px;
                 top: 10px;
                 padding: 8px 12px;
@@ -702,6 +709,14 @@
             .footer .username {
                 font-size: 1.1em;
             }
+
+            .tg-top-banner .banner-links {
+                gap: 15px;
+            }
+            
+            .tg-top-banner .separator {
+                display: none;
+            }
         }
     </style>
 </head>
@@ -719,10 +734,17 @@
     </div>
     
     <div class="container">
+        <!-- Верхний баннер с двумя ссылками -->
         <div class="tg-top-banner">
-            <a href="https://t.me/PROJECTARDUINOUNO" target="_blank">
-                <span>📱</span> <span id="subscribeText">ПОДПИШИСЬ: АРДУИНО ПРОЕКТЫ И ПАЯЛЬНИКИ</span> <span>🔧</span>
-            </a>
+            <div class="banner-links">
+                <a href="http://www.youtube.com/@ARDUINOESPPROJECT" target="_blank">
+                    <span>▶️</span> <span>ПОДПИШИСЬ: ARDUINO ESPPROJECT</span> <span>🎥</span>
+                </a>
+                <span class="separator">|</span>
+                <a href="https://t.me/PROJECTARDUINOUNO" target="_blank">
+                    <span>📱</span> <span id="subscribeText">ПОДПИШИСЬ: АРДУИНО ПРОЕКТЫ И ПАЯЛЬНИКИ</span> <span>🔧</span>
+                </a>
+            </div>
         </div>
         
         <div class="header">
@@ -1012,23 +1034,14 @@ void loop() {
                 </div>
             </div>
             
-            <!-- Вкладка 2 - RGB светодиод -->
+            <!-- Вкладка 2 - RGB светодиод (с карточками + ваш код) -->
             <div id="tab2" class="tab-content">
-                <div class="greeting" id="greeting2">🌈 RGB светодиод + ESP8266 D1 Mini V2</div>
-                
-                <div class="connection-scheme">
-                    <h2 id="schemeTitle2">🔌 СХЕМА ПОДКЛЮЧЕНИЯ RGB</h2>
-                    <div class="scheme-grid">
-                        <div class="scheme-item"><span>⚫</span><strong class="pin-gnd"><span id="rgbPin1">GND → GND</span></strong></div>
-                        <div class="scheme-item"><span>🔴</span><strong class="pin-red"><span id="rgbPin2">R → D1 (GPIO5) + 220 Ом</span></strong></div>
-                        <div class="scheme-item"><span>🟢</span><strong class="pin-green"><span id="rgbPin3">G → D2 (GPIO4) + 220 Ом</span></strong></div>
-                        <div class="scheme-item"><span>🔵</span><strong class="pin-blue"><span id="rgbPin4">B → D3 (GPIO0) + 220 Ом</span></strong></div>
-                    </div>
-                </div>
+                <div class="greeting" id="greeting2">🌈 RGB светодиод + ESP8266 (режимы и управление)</div>
                 
                 <h2 style="color: #667eea; margin: 30px 0 20px; text-align: center;" id="componentsTitle2">⚡ КОМПОНЕНТЫ ДЛЯ ПРОЕКТА ⚡</h2>
                 
                 <div class="components-grid">
+                    <!-- ESP8266 D1 Mini V2 -->
                     <div class="component-card">
                         <div class="component-icon">🔹</div>
                         <h3>ESP8266 D1 Mini V2</h3>
@@ -1040,6 +1053,7 @@ void loop() {
                         </div>
                     </div>
                     
+                    <!-- RGB модуль KY-016 (HW-479) -->
                     <div class="component-card">
                         <div class="component-icon">🌈</div>
                         <h3>RGB модуль KY-016 (HW-479)</h3>
@@ -1051,17 +1065,7 @@ void loop() {
                         </div>
                     </div>
                     
-                    <div class="component-card">
-                        <div class="component-icon">⚡</div>
-                        <h3>Резисторы 220 Ом</h3>
-                        <p>3 штуки для каждого канала</p>
-                        <div class="shop-buttons">
-                            <a href="https://www.wildberries.ru/catalog/0/search.aspx?search=резисторы+220+ом" target="_blank" class="shop-btn wb">Wildberries</a>
-                            <a href="https://www.ozon.ru/search/?text=резисторы+220+ом" target="_blank" class="shop-btn ozon">Ozon</a>
-                            <a href="https://aliexpress.ru/wholesale?SearchText=220+ohm+resistor" target="_blank" class="shop-btn aliexpress">AliExpress</a>
-                        </div>
-                    </div>
-                    
+                    <!-- Коробка распределительная -->
                     <div class="component-card">
                         <div class="component-icon">📦</div>
                         <h3>Коробка распределительная</h3>
@@ -1073,6 +1077,19 @@ void loop() {
                         </div>
                     </div>
                     
+                    <!-- Резисторы 220 Ом -->
+                    <div class="component-card">
+                        <div class="component-icon">⚡</div>
+                        <h3>Резисторы 220 Ом</h3>
+                        <p>3 штуки для каждого канала</p>
+                        <div class="shop-buttons">
+                            <a href="https://www.wildberries.ru/catalog/0/search.aspx?search=резисторы+220+ом" target="_blank" class="shop-btn wb">Wildberries</a>
+                            <a href="https://www.ozon.ru/search/?text=резисторы+220+ом" target="_blank" class="shop-btn ozon">Ozon</a>
+                            <a href="https://aliexpress.ru/wholesale?SearchText=220+ohm+resistor" target="_blank" class="shop-btn aliexpress">AliExpress</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Провода -->
                     <div class="component-card">
                         <div class="component-icon">🔌</div>
                         <h3>Соединительные провода</h3>
@@ -1086,151 +1103,744 @@ void loop() {
                 </div>
                 
                 <div class="code-section">
-                    <h2 id="codeTitle2">📟 КОД ДЛЯ RGB (ESP8266 D1 Mini V2 + KY-016)</h2>
+                    <h2 id="codeTitle2">📟 СКЕТЧ ДЛЯ ESP8266 (ВЕБ-ИНТЕРФЕЙС С РЕЖИМАМИ)</h2>
                     <div class="code-block">
                         <pre>
 #include &lt;ESP8266WiFi.h&gt;
 #include &lt;ESP8266WebServer.h&gt;
 
-// Пины для ESP8266 D1 Mini V2
-#define D1 5   // GPIO5 - Красный
-#define D2 4   // GPIO4 - Зеленый
-#define D3 0   // GPIO0 - Синий
+// Определяем пины для ESP8266
+#define D0 16
+#define D1 5
+#define D2 4
+#define D3 0
+#define D4 2
+#define D5 14
+#define D6 12
+#define D7 13
+#define D8 15
+#define D9 3
+#define D10 1
 
-// ========== ТВОИ ДАННЫЕ ==========
-const char* ssid = "твой_WiFi";
-const char* password = "твой_пароль";
-// =================================
+const char* ssid = "your_SSID";        // ⚠️ Замените на свой SSID
+const char* password = "your_PASSWORD"; // ⚠️ Замените на свой пароль
 
 ESP8266WebServer server(80);
 
-// Пины для RGB модуля KY-016 (HW-479)
-const int redPin = D1;
-const int greenPin = D2;
-const int bluePin = D3;
+const int redPin = D1;    // GPIO5
+const int greenPin = D2;   // GPIO4  
+const int bluePin = D3;    // GPIO0
+
+// Переменные для режимов
+int mode = 0; // 0 - ручной, 1-7 - режимы
+unsigned long lastModeUpdate = 0;
+int modeStep = 0;
+
+// Цвета для режимов (по умолчанию красный)
+int modeRed = 1023, modeGreen = 0, modeBlue = 0;
 
 void setup() {
   Serial.begin(115200);
+  delay(1000);
   
   pinMode(redPin, OUTPUT);
   pinMode(greenPin, OUTPUT);
   pinMode(bluePin, OUTPUT);
   
-  // Тест светодиода
-  analogWrite(redPin, 1023);
-  delay(500);
+  // Красивое приветствие
+  for(int i=0; i<3; i++) {
+    analogWrite(redPin, 1023);
+    analogWrite(greenPin, 0);
+    analogWrite(bluePin, 0);
+    delay(200);
+    analogWrite(redPin, 0);
+    analogWrite(greenPin, 1023);
+    analogWrite(bluePin, 0);
+    delay(200);
+    analogWrite(redPin, 0);
+    analogWrite(greenPin, 0);
+    analogWrite(bluePin, 1023);
+    delay(200);
+  }
   analogWrite(redPin, 0);
-  analogWrite(greenPin, 1023);
-  delay(500);
   analogWrite(greenPin, 0);
-  analogWrite(bluePin, 1023);
-  delay(500);
   analogWrite(bluePin, 0);
   
   WiFi.begin(ssid, password);
+  Serial.print("Подключение к WiFi");
+  
   while (WiFi.status() != WL_CONNECTED) {
     delay(500);
     Serial.print(".");
   }
   
-  Serial.println("\nWiFi OK! IP: " + WiFi.localIP().toString());
+  Serial.println("\nWiFi OK!");
+  Serial.print("IP: ");
+  Serial.println(WiFi.localIP());
+  Serial.print("Сайт: http://");
+  Serial.println(WiFi.localIP());
   
   server.on("/", []() {
     String page = R"rawliteral(
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>RGB управление</title>
-    <style>
-        body { font-family: Arial; text-align: center; background: linear-gradient(135deg, #667eea, #764ba2); padding: 20px; }
-        .container { max-width: 500px; margin: 0 auto; background: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
-        h1 { color: #333; }
-        .preview { width: 100px; height: 100px; border-radius: 50%; margin: 20px auto; border: 3px solid white; box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
-        .slider-group { margin: 20px 0; }
-        .slider-group label { display: block; margin-bottom: 5px; font-weight: bold; }
-        input[type=range] { width: 100%; height: 10px; border-radius: 5px; }
-        .color-btn { padding: 10px 15px; margin: 3px; border: none; border-radius: 10px; color: white; font-weight: bold; cursor: pointer; }
-        .off-btn { background: #ff4757; color: white; padding: 15px 30px; border: none; border-radius: 30px; font-size: 1.2em; cursor: pointer; width: 100%; }
-        .ip { margin-top: 20px; padding: 10px; background: #f0f0f0; border-radius: 10px; }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h1>🌈 RGB УПРАВЛЕНИЕ</h1>
-        <div class="preview" id="preview" style="background: rgb(255,0,0);"></div>
+&lt;!DOCTYPE html&gt;
+&lt;html lang="ru"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"&gt;
+    &lt;title&gt;🌈 RGB СВЕТОДИОД | РЕЖИМЫ&lt;/title&gt;
+    &lt;style&gt;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
         
-        <div class="slider-group">
-            <label>Красный <span id="redVal">255</span></label>
-            <input type="range" id="red" min="0" max="255" value="255" oninput="updateColor()">
-        </div>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
         
-        <div class="slider-group">
-            <label>Зеленый <span id="greenVal">0</span></label>
-            <input type="range" id="green" min="0" max="255" value="0" oninput="updateColor()">
-        </div>
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 40px;
+            padding: 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            max-width: 500px;
+            width: 100%;
+            animation: slideIn 0.5s ease-out;
+        }
         
-        <div class="slider-group">
-            <label>Синий <span id="blueVal">0</span></label>
-            <input type="range" id="blue" min="0" max="255" value="0" oninput="updateColor()">
-        </div>
+        @keyframes slideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
         
-        <div style="margin: 20px 0">
-            <button class="color-btn" style="background:#ff0000" onclick="setColor(255,0,0)">Красный</button>
-            <button class="color-btn" style="background:#00ff00" onclick="setColor(0,255,0)">Зеленый</button>
-            <button class="color-btn" style="background:#0000ff" onclick="setColor(0,0,255)">Синий</button>
-            <button class="color-btn" style="background:#ffff00" onclick="setColor(255,255,0)">Желтый</button>
-            <button class="color-btn" style="background:#ff00ff" onclick="setColor(255,0,255)">Фиолетовый</button>
-            <button class="color-btn" style="background:#00ffff" onclick="setColor(0,255,255)">Голубой</button>
-        </div>
+        h1 {
+            text-align: center;
+            color: #333;
+            font-size: 2em;
+            margin-bottom: 5px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
         
-        <button class="off-btn" onclick="setColor(0,0,0)">⚫ ВЫКЛЮЧИТЬ</button>
-        <div class="ip" id="ip"></div>
-    </div>
-    
-    <script>
-        function updateColor() {
-            let r = document.getElementById('red').value;
-            let g = document.getElementById('green').value;
-            let b = document.getElementById('blue').value;
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 15px;
+            font-size: 0.9em;
+        }
+        
+        .color-preview {
+            width: 150px;
+            height: 150px;
+            margin: 10px auto 15px;
+            border-radius: 50%;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            transition: all 0.1s ease;
+            border: 4px solid white;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(255,255,255,0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 15px rgba(255,255,255,0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(255,255,255,0);
+            }
+        }
+        
+        .modes {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .mode-btn {
+            background: #f0f0f0;
+            border: none;
+            border-radius: 15px;
+            padding: 10px 5px;
+            font-size: 0.9em;
+            font-weight: bold;
+            color: #333;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            border: 2px solid transparent;
+        }
+        
+        .mode-btn:hover {
+            transform: scale(1.05);
+            background: #e0e0e0;
+        }
+        
+        .mode-btn.active {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border-color: white;
+        }
+        
+        .mode-btn.manual {
+            background: #333;
+            color: white;
+        }
+        
+        .mode-btn.manual.active {
+            background: linear-gradient(135deg, #ff6b6b, #ff4757);
+        }
+        
+        .mode-color-selector {
+            background: #f8f9fa;
+            border-radius: 20px;
+            padding: 15px;
+            margin: 15px 0;
+            border: 2px solid #667eea;
+        }
+        
+        .selector-title {
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .mode-color-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 8px;
+        }
+        
+        .mode-color-btn {
+            aspect-ratio: 1;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            border: 2px solid white;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+            transition: transform 0.2s;
+        }
+        
+        .mode-color-btn:hover {
+            transform: scale(1.1);
+        }
+        
+        .mode-color-btn.active {
+            border: 4px solid gold;
+            transform: scale(1.05);
+        }
+        
+        .sliders {
+            margin-bottom: 20px;
+            opacity: 1;
+            transition: opacity 0.3s;
+        }
+        
+        .sliders.disabled {
+            opacity: 0.5;
+            pointer-events: none;
+        }
+        
+        .slider-group {
+            background: #f8f9fa;
+            border-radius: 30px;
+            padding: 12px;
+            margin-bottom: 12px;
+            transition: transform 0.3s;
+        }
+        
+        .slider-group:hover {
+            transform: scale(1.02);
+        }
+        
+        .slider-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        
+        .color-icon {
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            margin-right: 10px;
+            border: 2px solid white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+        
+        .red-icon { background: linear-gradient(45deg, #ff0000, #ff6b6b); }
+        .green-icon { background: linear-gradient(45deg, #00ff00, #6bff6b); }
+        .blue-icon { background: linear-gradient(45deg, #0000ff, #6b6bff); }
+        
+        .slider-header h3 {
+            flex: 1;
+            font-size: 1em;
+            color: #333;
+        }
+        
+        .value-badge {
+            background: #333;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+        
+        input[type=range] {
+            width: 100%;
+            height: 8px;
+            border-radius: 10px;
+            outline: none;
+            -webkit-appearance: none;
+            background: linear-gradient(90deg, #000, currentColor);
+        }
+        
+        .red-slider { color: #ff0000; }
+        .green-slider { color: #00ff00; }
+        .blue-slider { color: #0000ff; }
+        
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: white;
+            border: 2px solid currentColor;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .color-menu {
+            background: #f8f9fa;
+            border-radius: 30px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        
+        .menu-title {
+            text-align: center;
+            color: #333;
+            font-size: 1.1em;
+            margin-bottom: 12px;
+            font-weight: bold;
+        }
+        
+        .color-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 8px;
+        }
+        
+        .color-btn {
+            aspect-ratio: 1;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            border: 2px solid white;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+            transition: transform 0.2s;
+        }
+        
+        .color-btn:hover {
+            transform: scale(1.1);
+        }
+        
+        .preset-colors {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+        }
+        
+        .preset-btn {
+            background: white;
+            border: none;
+            border-radius: 20px;
+            padding: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+        }
+        
+        .preset-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .off-btn {
+            background: #ff4757;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            padding: 15px;
+            font-size: 1.2em;
+            font-weight: bold;
+            width: 100%;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(255,71,87,0.3);
+        }
+        
+        .off-btn:hover {
+            background: #ff6b81;
+            transform: scale(1.02);
+        }
+        
+        .ip-address {
+            text-align: center;
+            margin-top: 15px;
+            padding: 10px;
+            background: #f0f0f0;
+            border-radius: 30px;
+            font-family: monospace;
+            font-size: 1.1em;
+            color: #333;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class="container"&gt;
+        &lt;h1&gt;🌈 RGB СВЕТОДИОД&lt;/h1&gt;
+        &lt;div class="subtitle"&gt;Управление цветом и режимами&lt;/div&gt;
+        
+        &lt;div class="color-preview" id="preview" style="background: rgb(255,0,0);"&gt;&lt;/div&gt;
+        
+        &lt;div class="modes"&gt;
+            &lt;button class="mode-btn manual" onclick="setMode(0)"&gt;🔧 Ручной&lt;/button&gt;
+            &lt;button class="mode-btn" onclick="setMode(1)"&gt;🌈 Радуга&lt;/button&gt;
+            &lt;button class="mode-btn" onclick="setMode(2)"&gt;🔥 Огонь&lt;/button&gt;
+            &lt;button class="mode-btn" onclick="setMode(3)"&gt;💧 Волны&lt;/button&gt;
+            &lt;button class="mode-btn" onclick="setMode(4)"&gt;⚡ Стробоскоп&lt;/button&gt;
+            &lt;button class="mode-btn" onclick="setMode(5)"&gt;✨ Мерцание&lt;/button&gt;
+            &lt;button class="mode-btn" onclick="setMode(6)"&gt;❤️ Пульс&lt;/button&gt;
+            &lt;button class="mode-btn" onclick="setMode(7)"&gt;🌙 Закат&lt;/button&gt;
+        &lt;/div&gt;
+        
+        &lt;div class="mode-color-selector" id="modeColorSelector" style="display: none;"&gt;
+            &lt;div class="selector-title"&gt;Выберите цвет для режима:&lt;/div&gt;
+            &lt;div class="mode-color-grid"&gt;
+                &lt;button class="mode-color-btn" style="background: #ff0000;" onclick="setModeColor(1023,0,0)"&gt;&lt;/button&gt;
+                &lt;button class="mode-color-btn" style="background: #00ff00;" onclick="setModeColor(0,1023,0)"&gt;&lt;/button&gt;
+                &lt;button class="mode-color-btn" style="background: #0000ff;" onclick="setModeColor(0,0,1023)"&gt;&lt;/button&gt;
+                &lt;button class="mode-color-btn" style="background: #ffff00;" onclick="setModeColor(1023,1023,0)"&gt;&lt;/button&gt;
+                &lt;button class="mode-color-btn" style="background: #ff00ff;" onclick="setModeColor(1023,0,1023)"&gt;&lt;/button&gt;
+                &lt;button class="mode-color-btn" style="background: #00ffff;" onclick="setModeColor(0,1023,1023)"&gt;&lt;/button&gt;
+                &lt;button class="mode-color-btn" style="background: #ff8800;" onclick="setModeColor(1023,512,0)"&gt;&lt;/button&gt;
+                &lt;button class="mode-color-btn" style="background: #ff0088;" onclick="setModeColor(1023,0,512)"&gt;&lt;/button&gt;
+                &lt;button class="mode-color-btn" style="background: #88ff00;" onclick="setModeColor(512,1023,0)"&gt;&lt;/button&gt;
+                &lt;button class="mode-color-btn" style="background: #00ff88;" onclick="setModeColor(0,1023,512)"&gt;&lt;/button&gt;
+                &lt;button class="mode-color-btn" style="background: #8800ff;" onclick="setModeColor(512,0,1023)"&gt;&lt;/button&gt;
+                &lt;button class="mode-color-btn" style="background: #0088ff;" onclick="setModeColor(0,512,1023)"&gt;&lt;/button&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        
+        &lt;div class="sliders" id="sliders"&gt;
+            &lt;div class="slider-group"&gt;
+                &lt;div class="slider-header"&gt;
+                    &lt;div class="color-icon red-icon"&gt;&lt;/div&gt;
+                    &lt;h3&gt;Красный&lt;/h3&gt;
+                    &lt;span class="value-badge" id="redValue"&gt;1023&lt;/span&gt;
+                &lt;/div&gt;
+                &lt;input type="range" class="red-slider" id="red" min="0" max="1023" value="1023" oninput="updateColor()"&gt;
+            &lt;/div&gt;
             
-            document.getElementById('redVal').innerHTML = r;
-            document.getElementById('greenVal').innerHTML = g;
-            document.getElementById('blueVal').innerHTML = b;
-            document.getElementById('preview').style.background = 'rgb(' + r + ',' + g + ',' + b + ')';
-            fetch('/set?r=' + (r*4) + '&g=' + (g*4) + '&b=' + (b*4));
+            &lt;div class="slider-group"&gt;
+                &lt;div class="slider-header"&gt;
+                    &lt;div class="color-icon green-icon"&gt;&lt;/div&gt;
+                    &lt;h3&gt;Зеленый&lt;/h3&gt;
+                    &lt;span class="value-badge" id="greenValue"&gt;0&lt;/span&gt;
+                &lt;/div&gt;
+                &lt;input type="range" class="green-slider" id="green" min="0" max="1023" value="0" oninput="updateColor()"&gt;
+            &lt;/div&gt;
+            
+            &lt;div class="slider-group"&gt;
+                &lt;div class="slider-header"&gt;
+                    &lt;div class="color-icon blue-icon"&gt;&lt;/div&gt;
+                    &lt;h3&gt;Синий&lt;/h3&gt;
+                    &lt;span class="value-badge" id="blueValue"&gt;0&lt;/span&gt;
+                &lt;/div&gt;
+                &lt;input type="range" class="blue-slider" id="blue" min="0" max="1023" value="0" oninput="updateColor()"&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        
+        &lt;div class="color-menu"&gt;
+            &lt;div class="menu-title"&gt;🎨 Быстрые цвета&lt;/div&gt;
+            &lt;div class="color-grid"&gt;
+                &lt;button class="color-btn" style="background: #ff0000;" onclick="setColor(1023,0,0)"&gt;&lt;/button&gt;
+                &lt;button class="color-btn" style="background: #00ff00;" onclick="setColor(0,1023,0)"&gt;&lt;/button&gt;
+                &lt;button class="color-btn" style="background: #0000ff;" onclick="setColor(0,0,1023)"&gt;&lt;/button&gt;
+                &lt;button class="color-btn" style="background: #ffff00;" onclick="setColor(1023,1023,0)"&gt;&lt;/button&gt;
+                &lt;button class="color-btn" style="background: #ff00ff;" onclick="setColor(1023,0,1023)"&gt;&lt;/button&gt;
+                &lt;button class="color-btn" style="background: #00ffff;" onclick="setColor(0,1023,1023)"&gt;&lt;/button&gt;
+                &lt;button class="color-btn" style="background: #ffffff;" onclick="setColor(1023,1023,1023)"&gt;&lt;/button&gt;
+                &lt;button class="color-btn" style="background: #ff8800;" onclick="setColor(1023,512,0)"&gt;&lt;/button&gt;
+                &lt;button class="color-btn" style="background: #ff0088;" onclick="setColor(1023,0,512)"&gt;&lt;/button&gt;
+                &lt;button class="color-btn" style="background: #88ff00;" onclick="setColor(512,1023,0)"&gt;&lt;/button&gt;
+                &lt;button class="color-btn" style="background: #00ff88;" onclick="setColor(0,1023,512)"&gt;&lt;/button&gt;
+                &lt;button class="color-btn" style="background: #8800ff;" onclick="setColor(512,0,1023)"&gt;&lt;/button&gt;
+                &lt;button class="color-btn" style="background: #0088ff;" onclick="setColor(0,512,1023)"&gt;&lt;/button&gt;
+                &lt;button class="color-btn" style="background: #ff5555;" onclick="setColor(1023,341,341)"&gt;&lt;/button&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        
+        &lt;div class="preset-colors"&gt;
+            &lt;button class="preset-btn" style="color: #ff0000;" onclick="setColor(1023,0,0)"&gt;🔴 Красный&lt;/button&gt;
+            &lt;button class="preset-btn" style="color: #00ff00;" onclick="setColor(0,1023,0)"&gt;🟢 Зеленый&lt;/button&gt;
+            &lt;button class="preset-btn" style="color: #0000ff;" onclick="setColor(0,0,1023)"&gt;🔵 Синий&lt;/button&gt;
+            &lt;button class="preset-btn" style="color: #ffff00;" onclick="setColor(1023,1023,0)"&gt;🟡 Желтый&lt;/button&gt;
+        &lt;/div&gt;
+        
+        &lt;button class="off-btn" onclick="setColor(0,0,0)"&gt;⚫ ВЫКЛЮЧИТЬ&lt;/button&gt;
+        
+        &lt;div class="ip-address" id="ipAddress"&gt;&lt;/div&gt;
+    &lt;/div&gt;
+    
+    &lt;script&gt;
+        function updateColor() {
+            let red = document.getElementById('red').value;
+            let green = document.getElementById('green').value;
+            let blue = document.getElementById('blue').value;
+            
+            document.getElementById('redValue').innerHTML = red;
+            document.getElementById('greenValue').innerHTML = green;
+            document.getElementById('blueValue').innerHTML = blue;
+            
+            document.getElementById('preview').style.background = 'rgb(' + Math.round(red/4) + ',' + Math.round(green/4) + ',' + Math.round(blue/4) + ')';
+            
+            fetch('/set?r=' + red + '&g=' + green + '&b=' + blue);
         }
         
-        function setColor(r, g, b) {
-            document.getElementById('red').value = r;
-            document.getElementById('green').value = g;
-            document.getElementById('blue').value = b;
+        function setColor(red, green, blue) {
+            document.getElementById('red').value = red;
+            document.getElementById('green').value = green;
+            document.getElementById('blue').value = blue;
             updateColor();
+            setMode(0);
         }
         
-        document.getElementById('ip').innerHTML = 'IP: ' + window.location.hostname;
-    </script>
-</body>
-</html>
+        function setMode(modeNum) {
+            let buttons = document.querySelectorAll('.mode-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            
+            if(modeNum == 0) {
+                document.querySelector('.mode-btn.manual').classList.add('active');
+                document.getElementById('sliders').classList.remove('disabled');
+                document.getElementById('modeColorSelector').style.display = 'none';
+            } else {
+                let modeButtons = document.querySelectorAll('.mode-btn:not(.manual)');
+                if(modeButtons[modeNum-1]) {
+                    modeButtons[modeNum-1].classList.add('active');
+                }
+                document.getElementById('sliders').classList.add('disabled');
+                document.getElementById('modeColorSelector').style.display = 'block';
+            }
+            
+            fetch('/mode?m=' + modeNum);
+        }
+        
+        function setModeColor(red, green, blue) {
+            let buttons = document.querySelectorAll('.mode-color-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            fetch('/modecolor?r=' + red + '&g=' + green + '&b=' + blue);
+        }
+        
+        // Получаем IP адрес
+        document.getElementById('ipAddress').innerHTML = '🌐 ' + window.location.hostname;
+        
+        // Делаем активной кнопку ручного режима
+        document.querySelector('.mode-btn.manual').classList.add('active');
+        
+        // По умолчанию выбираем красный цвет для режимов
+        setTimeout(function() {
+            let redButton = document.querySelector('.mode-color-btn[style*="ff0000"]');
+            if(redButton) {
+                redButton.classList.add('active');
+            }
+        }, 500);
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
 )rawliteral";
     server.send(200, "text/html", page);
   });
 
   server.on("/set", []() {
     if(server.hasArg("r") && server.hasArg("g") && server.hasArg("b")) {
-      analogWrite(redPin, server.arg("r").toInt());
-      analogWrite(greenPin, server.arg("g").toInt());
-      analogWrite(bluePin, server.arg("b").toInt());
+      int r = server.arg("r").toInt();
+      int g = server.arg("g").toInt();
+      int b = server.arg("b").toInt();
+      
+      analogWrite(redPin, r);
+      analogWrite(greenPin, g);
+      analogWrite(bluePin, b);
+      
+      mode = 0;
+    }
+    server.send(200, "text/plain", "OK");
+  });
+
+  server.on("/mode", []() {
+    if(server.hasArg("m")) {
+      mode = server.arg("m").toInt();
+    }
+    server.send(200, "text/plain", "OK");
+  });
+
+  server.on("/modecolor", []() {
+    if(server.hasArg("r") && server.hasArg("g") && server.hasArg("b")) {
+      modeRed = server.arg("r").toInt();
+      modeGreen = server.arg("g").toInt();
+      modeBlue = server.arg("b").toInt();
     }
     server.send(200, "text/plain", "OK");
   });
 
   server.begin();
+  Serial.println("HTTP server started");
 }
 
 void loop() {
   server.handleClient();
+  
+  if(mode > 0) {
+    unsigned long now = millis();
+    
+    switch(mode) {
+      case 1: // Радуга
+        if(now - lastModeUpdate > 20) {
+          modeStep = (modeStep + 1) % 1536;
+          int r, g, b;
+          
+          if(modeStep < 256) {
+            r = 1023;
+            g = modeStep * 4;
+            b = 0;
+          } else if(modeStep < 512) {
+            r = 1023 - (modeStep - 256) * 4;
+            g = 1023;
+            b = 0;
+          } else if(modeStep < 768) {
+            r = 0;
+            g = 1023;
+            b = (modeStep - 512) * 4;
+          } else if(modeStep < 1024) {
+            r = 0;
+            g = 1023 - (modeStep - 768) * 4;
+            b = 1023;
+          } else if(modeStep < 1280) {
+            r = (modeStep - 1024) * 4;
+            g = 0;
+            b = 1023;
+          } else {
+            r = 1023;
+            g = 0;
+            b = 1023 - (modeStep - 1280) * 4;
+          }
+          
+          analogWrite(redPin, r);
+          analogWrite(greenPin, g);
+          analogWrite(bluePin, b);
+          lastModeUpdate = now;
+        }
+        break;
+        
+      case 2: // Огонь
+        if(now - lastModeUpdate > 100) {
+          int flicker = random(600, 1023);
+          analogWrite(redPin, flicker);
+          analogWrite(greenPin, flicker / 8);
+          analogWrite(bluePin, 0);
+          lastModeUpdate = now;
+        }
+        break;
+        
+      case 3: // Волны
+        if(now - lastModeUpdate > 50) {
+          modeStep = (modeStep + 5) % 1024;
+          float sinVal = (sin(modeStep * 0.006) * 511) + 512;
+          analogWrite(redPin, (modeRed * (int)sinVal) / 1023);
+          analogWrite(greenPin, (modeGreen * (int)sinVal) / 1023);
+          analogWrite(bluePin, (modeBlue * (int)sinVal) / 1023);
+          lastModeUpdate = now;
+        }
+        break;
+        
+      case 4: // Стробоскоп
+        if(now - lastModeUpdate > 100) {
+          if(modeStep == 0) {
+            analogWrite(redPin, modeRed);
+            analogWrite(greenPin, modeGreen);
+            analogWrite(bluePin, modeBlue);
+            modeStep = 1;
+          } else {
+            analogWrite(redPin, 0);
+            analogWrite(greenPin, 0);
+            analogWrite(bluePin, 0);
+            modeStep = 0;
+          }
+          lastModeUpdate = now;
+        }
+        break;
+        
+      case 5: // Мерцание
+        if(now - lastModeUpdate > 200) {
+          if(random(0, 3) == 0) {
+            analogWrite(redPin, modeRed);
+            analogWrite(greenPin, modeGreen);
+            analogWrite(bluePin, modeBlue);
+          } else {
+            analogWrite(redPin, modeRed / 3);
+            analogWrite(greenPin, modeGreen / 3);
+            analogWrite(bluePin, modeBlue / 3);
+          }
+          lastModeUpdate = now;
+        }
+        break;
+        
+      case 6: // Пульс
+        if(now - lastModeUpdate > 20) {
+          modeStep = (modeStep + 2) % 1024;
+          float pulseVal = (sin(modeStep * 0.006) * 511) + 512;
+          analogWrite(redPin, (modeRed * (int)pulseVal) / 1023);
+          analogWrite(greenPin, (modeGreen * (int)pulseVal) / 1023);
+          analogWrite(bluePin, (modeBlue * (int)pulseVal) / 1023);
+          lastModeUpdate = now;
+        }
+        break;
+        
+      case 7: // Закат
+        if(now - lastModeUpdate > 30) {
+          modeStep = (modeStep + 1) % 1024;
+          int r = (sin(modeStep * 0.003) * 511) + 512;
+          int g = (sin(modeStep * 0.003 + 2) * 255) + 256;
+          int b = (sin(modeStep * 0.003 + 4) * 127) + 128;
+          analogWrite(redPin, r);
+          analogWrite(greenPin, g);
+          analogWrite(bluePin, b);
+          lastModeUpdate = now;
+        }
+        break;
+    }
+  }
 }
                         </pre>
                     </div>
@@ -1313,13 +1923,9 @@ void loop() {
                 comp3: 'Резисторы 10кОм',
                 comp4: 'Повербанк',
                 codeTitle1: '📟 ПОЛНЫЙ КОД МЕТЕОСТАНЦИИ',
-                greeting2: '🌈 RGB светодиод + ESP8266 D1 Mini V2',
-                schemeTitle2: '🔌 СХЕМА ПОДКЛЮЧЕНИЯ RGB',
-                rgbPin1: 'GND → GND',
-                rgbPin2: 'R → D1 + 220 Ом',
-                rgbPin3: 'G → D2 + 220 Ом',
-                rgbPin4: 'B → D3 + 220 Ом',
-                codeTitle2: '📟 КОД ДЛЯ RGB',
+                greeting2: '🌈 RGB светодиод + ESP8266 (режимы и управление)',
+                componentsTitle2: '⚡ КОМПОНЕНТЫ ДЛЯ ПРОЕКТА ⚡',
+                codeTitle2: '📟 СКЕТЧ ДЛЯ ESP8266 (ВЕБ-ИНТЕРФЕЙС С РЕЖИМАМИ)',
                 greeting3: '🔧 Arduino Uno и Nano',
                 schemeTitle3: '🔌 ПРОЕКТ 1: Мигание светодиодом',
                 blinkPin1: 'LED + → Pin 13',
@@ -1356,13 +1962,9 @@ void loop() {
                 comp3: '10kΩ Resistors',
                 comp4: 'Power Bank',
                 codeTitle1: '📟 FULL WEATHER STATION CODE',
-                greeting2: '🌈 RGB LED + ESP8266 D1 Mini V2',
-                schemeTitle2: '🔌 RGB CONNECTION DIAGRAM',
-                rgbPin1: 'GND → GND',
-                rgbPin2: 'R → D1 + 220Ω',
-                rgbPin3: 'G → D2 + 220Ω',
-                rgbPin4: 'B → D3 + 220Ω',
-                codeTitle2: '📟 RGB CODE',
+                greeting2: '🌈 RGB LED + ESP8266 (modes & control)',
+                componentsTitle2: '⚡ PROJECT COMPONENTS ⚡',
+                codeTitle2: '📟 ESP8266 SKETCH (WEB INTERFACE WITH MODES)',
                 greeting3: '🔧 Arduino Uno and Nano',
                 schemeTitle3: '🔌 PROJECT 1: LED Blink',
                 blinkPin1: 'LED + → Pin 13',
@@ -1440,11 +2042,7 @@ void loop() {
             document.getElementById('codeTitle1').textContent = t.codeTitle1;
             
             document.getElementById('greeting2').textContent = t.greeting2;
-            document.getElementById('schemeTitle2').textContent = t.schemeTitle2;
-            document.getElementById('rgbPin1').textContent = t.rgbPin1;
-            document.getElementById('rgbPin2').textContent = t.rgbPin2;
-            document.getElementById('rgbPin3').textContent = t.rgbPin3;
-            document.getElementById('rgbPin4').textContent = t.rgbPin4;
+            document.getElementById('componentsTitle2').textContent = t.componentsTitle2;
             document.getElementById('codeTitle2').textContent = t.codeTitle2;
             
             document.getElementById('greeting3').textContent = t.greeting3;
