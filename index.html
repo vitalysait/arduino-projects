@@ -326,6 +326,94 @@
             display: block;
         }
         
+        /* Стили для видео */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 */
+            height: 0;
+            overflow: hidden;
+            max-width: 100%;
+            margin: 30px 0;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            background: linear-gradient(135deg, #667eea20, #764ba220);
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 20px;
+        }
+        
+        .video-placeholder {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #667eea30, #764ba230);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border-radius: 20px;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            pointer-events: none;
+        }
+        
+        .video-placeholder span {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+        
+        .video-placeholder p {
+            font-size: 1.2em;
+            max-width: 80%;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 35px 0;
+        }
+        
+        .video-card {
+            background: rgba(255, 255, 255, 0.65);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s;
+        }
+        
+        .video-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 45px rgba(102, 126, 234, 0.25);
+        }
+        
+        .video-card .video-container {
+            margin: 0 0 15px 0;
+        }
+        
+        .video-card h3 {
+            color: #667eea;
+            font-size: 1.2em;
+            margin: 0;
+            text-align: center;
+        }
+        
         /* Внутренние табы проектов */
         .project-tabs {
             display: flex;
@@ -758,9 +846,9 @@
             }
             
             .main-tab-btn {
-                padding: 12px 25px;
+                padding: 12px 20px;
                 font-size: 1.1em;
-                min-width: 150px;
+                min-width: 120px;
             }
             
             .project-tabs {
@@ -864,6 +952,14 @@
             .tg-top-banner .separator {
                 display: none;
             }
+            
+            .video-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .video-placeholder p {
+                font-size: 1em;
+            }
         }
     </style>
 </head>
@@ -903,10 +999,11 @@
         </div>
         
         <div class="content">
-            <!-- ГЛАВНЫЕ ВКЛАДКИ: ПРОЕКТЫ и ОБЗОРЫ+ТОВАРЫ -->
+            <!-- ГЛАВНЫЕ ВКЛАДКИ: ПРОЕКТЫ, ОБЗОРЫ+ТОВАРЫ, ВИДЕО -->
             <div class="main-tabs">
                 <button class="main-tab-btn active" onclick="openMainTab('projects')" id="mainTabProjects">🔧 Проекты</button>
                 <button class="main-tab-btn" onclick="openMainTab('reviews')" id="mainTabReviews">📺 Обзоры + 🛒 Товары</button>
+                <button class="main-tab-btn" onclick="openMainTab('videos')" id="mainTabVideos">📺 Видео</button>
             </div>
             
             <!-- ВКЛАДКА ПРОЕКТЫ -->
@@ -2300,6 +2397,84 @@ void loop() {
                     </div>
                 </div>
             </div>
+            
+            <!-- ВКЛАДКА ВИДЕО -->
+            <div id="videos" class="main-tab-content">
+                <div class="greeting" id="videosGreeting">📺 ПОСЛЕДНИЕ ВИДЕО С КАНАЛА</div>
+                
+                <!-- Последнее видео (большое) -->
+                <h2 style="color: #667eea; margin: 20px 0; text-align: center;" id="latestVideoTitle">🔥 Самое новое видео</h2>
+                <div class="video-container">
+                    <iframe 
+                        src="https://www.youtube.com/embed?listType=user_uploads&list=ARDUINOESPPROJECT&index=1" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
+                    <div class="video-placeholder">
+                        <span>⏳</span>
+                        <p id="videoPlaceholderText">Видео скоро появится. Пожалуйста, подождите!</p>
+                    </div>
+                </div>
+                
+                <!-- Сетка с последними видео -->
+                <h2 style="color: #667eea; margin: 40px 0 20px; text-align: center;" id="moreVideosTitle">📽️ Ещё видео</h2>
+                <div class="video-grid">
+                    <!-- Видео 2 -->
+                    <div class="video-card">
+                        <div class="video-container">
+                            <iframe 
+                                src="https://www.youtube.com/embed?listType=user_uploads&list=ARDUINOESPPROJECT&index=2" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen>
+                            </iframe>
+                            <div class="video-placeholder">
+                                <span>⏳</span>
+                                <p>Видео скоро появится</p>
+                            </div>
+                        </div>
+                        <h3>Предыдущее видео</h3>
+                    </div>
+                    
+                    <!-- Видео 3 -->
+                    <div class="video-card">
+                        <div class="video-container">
+                            <iframe 
+                                src="https://www.youtube.com/embed?listType=user_uploads&list=ARDUINOESPPROJECT&index=3" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen>
+                            </iframe>
+                            <div class="video-placeholder">
+                                <span>⏳</span>
+                                <p>Видео скоро появится</p>
+                            </div>
+                        </div>
+                        <h3>Ещё одно видео</h3>
+                    </div>
+                    
+                    <!-- Видео 4 -->
+                    <div class="video-card">
+                        <div class="video-container">
+                            <iframe 
+                                src="https://www.youtube.com/embed?listType=user_uploads&list=ARDUINOESPPROJECT&index=4" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen>
+                            </iframe>
+                            <div class="video-placeholder">
+                                <span>⏳</span>
+                                <p>Видео скоро появится</p>
+                            </div>
+                        </div>
+                        <h3>И ещё одно</h3>
+                    </div>
+                </div>
+                
+                <!-- Кнопка подписки -->
+                <div style="text-align: center; margin: 40px 0;">
+                    <a href="https://www.youtube.com/@ARDUINOESPPROJECT" target="_blank" style="display: inline-block; background: linear-gradient(135deg, #ff0000, #cc0000); color: white; padding: 15px 40px; border-radius: 50px; font-size: 1.3em; font-weight: bold; text-decoration: none; box-shadow: 0 10px 25px rgba(255,0,0,0.3); transition: all 0.3s;">
+                        🔔 ПОДПИСАТЬСЯ НА КАНАЛ
+                    </a>
+                </div>
+            </div>
         </div>
         
         <div class="footer">
@@ -2320,6 +2495,7 @@ void loop() {
                 badge: '2026',
                 mainTabProjects: '🔧 Проекты',
                 mainTabReviews: '📺 Обзоры + 🛒 Товары',
+                mainTabVideos: '📺 Видео',
                 projectTab1: '📋 1. Метеостанция',
                 projectTab2: '💡 2. RGB светодиод',
                 projectTab3: '🔧 3. Arduino Uno/Nano',
@@ -2425,6 +2601,10 @@ void loop() {
                 shopPowerWb: 'Wildberries',
                 shopPowerOzon: 'Ozon',
                 shopPowerAli: 'AliExpress',
+                videosGreeting: '📺 ПОСЛЕДНИЕ ВИДЕО С КАНАЛА',
+                latestVideoTitle: '🔥 Самое новое видео',
+                moreVideosTitle: '📽️ Ещё видео',
+                videoPlaceholderText: 'Видео скоро появится. Пожалуйста, подождите!',
                 footer: 'АРДУИНО ПРОЕКТЫ И ПАЯЛЬНИКИ © 2026',
                 copyBtn: '📋 COPY'
             },
@@ -2437,6 +2617,7 @@ void loop() {
                 badge: '2026',
                 mainTabProjects: '🔧 Projects',
                 mainTabReviews: '📺 Reviews + 🛒 Shop',
+                mainTabVideos: '📺 Videos',
                 projectTab1: '📋 1. Weather Station',
                 projectTab2: '💡 2. RGB LED',
                 projectTab3: '🔧 3. Arduino Uno/Nano',
@@ -2542,6 +2723,10 @@ void loop() {
                 shopPowerWb: 'Wildberries',
                 shopPowerOzon: 'Ozon',
                 shopPowerAli: 'AliExpress',
+                videosGreeting: '📺 LATEST VIDEOS FROM THE CHANNEL',
+                latestVideoTitle: '🔥 Latest video',
+                moreVideosTitle: '📽️ More videos',
+                videoPlaceholderText: 'Video will appear soon. Please wait!',
                 footer: 'ARDUINO PROJECTS AND SOLDERING © 2026',
                 copyBtn: '📋 COPY'
             }
@@ -2564,6 +2749,7 @@ void loop() {
             document.getElementById('badge').textContent = t.badge;
             document.getElementById('mainTabProjects').textContent = t.mainTabProjects;
             document.getElementById('mainTabReviews').textContent = t.mainTabReviews;
+            document.getElementById('mainTabVideos').textContent = t.mainTabVideos;
             document.getElementById('projectTab1').textContent = t.projectTab1;
             document.getElementById('projectTab2').textContent = t.projectTab2;
             document.getElementById('projectTab3').textContent = t.projectTab3;
@@ -2696,6 +2882,12 @@ void loop() {
             document.getElementById('shopPowerOzon').textContent = t.shopPowerOzon;
             document.getElementById('shopPowerAli').textContent = t.shopPowerAli;
             
+            // Видео
+            document.getElementById('videosGreeting').textContent = t.videosGreeting;
+            document.getElementById('latestVideoTitle').textContent = t.latestVideoTitle;
+            document.getElementById('moreVideosTitle').textContent = t.moreVideosTitle;
+            document.getElementById('videoPlaceholderText').textContent = t.videoPlaceholderText;
+            
             document.getElementById('footerText').textContent = t.footer;
             
             // Кнопки копирования
@@ -2751,7 +2943,7 @@ void loop() {
             }, 2000);
         }
         
-        // Переключение главных вкладок (Проекты, Обзоры+Товары)
+        // Переключение главных вкладок
         function openMainTab(tabId) {
             document.querySelectorAll('.main-tab-content').forEach(tab => {
                 tab.classList.remove('active');
